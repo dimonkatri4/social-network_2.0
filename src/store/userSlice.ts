@@ -22,22 +22,21 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUsers: (state, action: PayloadAction<ResponseUser>) => {
-            state.users = action.payload.items
+        setUsers: (state, action: PayloadAction<IUser[]>) => {
+            state.users = action.payload
         },
         setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload
         },
-        setTotalCountUsers: (state, action: PayloadAction<ResponseUser>) => {
-            state.totalUsersCount = action.payload.totalCount
+        setTotalCountUsers: (state, action: PayloadAction<number>) => {
+            state.totalUsersCount = action.payload
         },
         toggleIsFetching: (state, action: PayloadAction<boolean>) => {
             state.isFetching = action.payload
         },
         toggleFollowing: (state, action: PayloadAction<ToggleFollowing>) => {
-            const {isFetching, userId} = action.payload;
-            state.followingInProgress = isFetching ? [userId] :
-                state.followingInProgress.filter(id => id !== userId)
+            state.followingInProgress = action.payload.isFetching ? [action.payload.userId] :
+                state.followingInProgress.filter(id => id !== action.payload.userId)
         },
         toggleFollowSuccess: (state, action: PayloadAction<number>) => {
             state.users = state.users.map(user => {
@@ -50,8 +49,8 @@ export const userSlice = createSlice({
         toggleIsFriendsList: (state, action: PayloadAction<boolean>) => {
             state.isFriendsList = action.payload
         },
-        setFriendsList: (state, action: PayloadAction<ResponseUser>) => {
-            state.friendsList = action.payload.items
+        setFriendsList: (state, action: PayloadAction<IUser[]>) => {
+            state.friendsList = action.payload
         }
     }
 })
