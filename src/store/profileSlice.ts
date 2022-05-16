@@ -62,7 +62,8 @@ let initialState = {
     error: ''
 }
 
-const createNewPost = (id: number,message: string, userName: string, date: string, photo: string) => ({
+const createNewPost = (id: number,message: string,
+                       userName: string, date: string, photo: string) => ({
     id,
     message,
     likeCount: 0,
@@ -85,7 +86,8 @@ export const profileSlice = createSlice({
     initialState,
     reducers: {
         addPost: (state, action:PayloadAction<string>) => {
-            const newPost = createNewPost(state.posts.length, action.payload, state.profileOwner.fullName, getDate(), state.profileOwner.photos.small)
+            const newPost = createNewPost(state.posts.length, action.payload,
+                state.profileOwner.fullName, getDate(), state.profileOwner.photos.small)
             state.posts = state.posts.concat(newPost)
         },
         setUsersProfile: (state, action: PayloadAction<IProfile>) => {
@@ -128,3 +130,8 @@ export const profileSlice = createSlice({
         }
     }
 })
+
+export const {addPost, setUsersProfile, setOwnerProfile, setUsersStatus, deletePost, savePhotoSuccess,
+    updateProfileInfoSuccess, changeEditModeProfile, setErrorInStatus, changeIsLiked } = profileSlice.actions
+
+export default profileSlice.reducer
