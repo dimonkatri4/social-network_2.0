@@ -9,7 +9,7 @@ interface UserContacts {
     mainLink: string
 }
 
-interface Photos {
+export interface IPhotos {
     small: string
     large: string
 }
@@ -21,5 +21,5 @@ export interface IProfile {
     lookingForAJobDescription: string
     fullName: string
     contacts: UserContacts
-    photos: Photos
+    photos: IPhotos
 }
