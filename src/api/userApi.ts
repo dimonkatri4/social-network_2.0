@@ -1,11 +1,5 @@
 import {instance} from "./baseApi";
-import {IUser} from "../types/IUser";
-
-interface ResponseUser {
-    items: IUser[]
-    totalCount: number
-    error: string
-}
+import {ResponseUser} from "../types/IUser";
 
 export const getUser = (pageSize: number, currentPage: number, friends?: boolean, term?: string) => {
     let urlParameter

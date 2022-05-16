@@ -10,3 +10,9 @@ export interface IUser {
     photos: Photos
     followed: boolean
 }
+
+export interface ResponseUser {
+    items: IUser[]
+    totalCount: number
+    error: string
+}
