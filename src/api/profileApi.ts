@@ -1,13 +1,8 @@
 import {instance} from "./baseApi";
-import {IProfile} from "../types/IProfile";
+import {IPhotos, IProfile} from "../types/IProfile";
 import {IResponse} from "../types/IResponse";
 
-interface DataUpdatePhoto {
-    small: string | null
-    large: string | null
-}
-
-export const profileAPI = {
+export const profileApi = {
     getProfile(userId: number) {
         return instance.get<IProfile>(`profile/${  userId}`).then(res => res.data)
     },
@@ -20,7 +15,7 @@ export const profileAPI = {
     updatePhoto(photoFile: File) {
         const formData = new FormData();
         formData.append("image", photoFile)
-        return instance.put<IResponse<DataUpdatePhoto>>(`profile/photo`, formData, {
+        return instance.put<IResponse<IPhotos>>(`profile/photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

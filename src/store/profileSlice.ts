@@ -59,7 +59,7 @@ let initialState = {
     photo: {} as IPhotos,
     editModeProfile: false,
     profileOwner: {} as IProfile,
-    error: ''
+    error: '' as string | null
 }
 
 const createNewPost = (id: number,message: string,
@@ -111,7 +111,7 @@ export const profileSlice = createSlice({
         changeEditModeProfile: (state, action: PayloadAction<boolean>) => {
             state.editModeProfile = action.payload
         },
-        setErrorInStatus: (state, action: PayloadAction<string>) => {
+        setErrorInStatus: (state, action: PayloadAction<string | null>) => {
             state.error = action.payload
         },
         changeIsLiked: (state, action: PayloadAction<number>) => {

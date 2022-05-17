@@ -13,7 +13,7 @@ import {deleteFollow, postFollow} from "../api/followApi";
 
 type ApiMethod = (userId: number) => Promise<IResponse>
 
-let followUnfollowFlow = async (dispatch: AppDispatch, userId: number, apiMethod: ApiMethod) => {
+const followUnfollowFlow = async (dispatch: AppDispatch, userId: number, apiMethod: ApiMethod) => {
     dispatch(toggleFollowing({isFetching: true, userId}))
     const data = await apiMethod(userId);
     if (data.resultCode == 0) {
