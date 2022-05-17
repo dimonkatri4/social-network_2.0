@@ -10,7 +10,7 @@ export const authApi = {
     authMe() {
         return instance.get<IResponse<IDataAuthMe>>(`auth/me`).then((res) => res.data)
     },
-    login(email: string, password: string, rememberMe?: boolean, captcha?: boolean) {
+    login(email: string, password: string, rememberMe?: boolean, captcha?: string) {
         return instance
             .post<IResponse<DataLogin>>(`auth/login`, { email, password, rememberMe, captcha })
             .then((res) => res.data)

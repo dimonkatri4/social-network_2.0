@@ -7,7 +7,7 @@ let initialState = {
     email: '',
     login: '',
     isAuth: false,
-    captchaUrl: ''
+    captchaUrl: '' as string | null
 }
 
 type InitialState = typeof initialState
@@ -23,7 +23,7 @@ export const authSlice = createSlice({
             state.login = action.payload.login
             state.isAuth = action.payload.isAuth
         },
-        getCaptchaUrlSuccess: (state, action: PayloadAction<string>) => {
+        getCaptchaUrlSuccess: (state, action: PayloadAction<string | null>) => {
             state.captchaUrl = action.payload
         }
     }
