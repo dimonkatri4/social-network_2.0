@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Form, Formik } from "formik";
 import * as Yup from 'yup';
 import s from './login.module.scss'
@@ -9,11 +9,15 @@ import {getCaptchaUrl} from "../../store/authSlice";
 import classNames from 'classnames';
 import {login} from "../../store/authThunks";
 import {MyTextInput} from "../common/FormikFormsBuild/FormikFormsBuild";
+import {useNavigate} from "react-router-dom";
 
-export const LoginForm = () => {
+interface Props {
+    captchaUrl: string | null
+}
+
+export const LoginForm = ({captchaUrl}: Props) => {
 
     const dispatch = useAppDispatch()
-    const {isAuth, captchaUrl} = useAppSelector(state => state.auth)
 
     return (
         <>
@@ -72,6 +76,15 @@ export const LoginForm = () => {
 }
 
 const Login = () => {
+
+    const {isAuth, captchaUrl} = useAppSelector(state => state.auth)
+    let navigate = useNavigate()
+
+    useEffect(() => {
+    if (isAuth) {
+        navigate('/profile')
+    }})
+
     return (
         <div className={classNames(s.loginPage, s.login_container)}>
             <div className={s.greeting}>
@@ -86,7 +99,7 @@ const Login = () => {
                 <div className={`caption`}>
                     <h3 className="title">Login</h3>
                 </div>
-                <LoginForm/>
+                <LoginForm captchaUrl={captchaUrl}/>
             </div>
         </div>
     );

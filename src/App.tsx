@@ -1,13 +1,26 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './App.scss'
 import Header from './components/Header/Header'
-import Login from "./components/Login/Login";
+import Main from "./components/Main/Main";
+import {useAppDispatch, useAppSelector} from "./hooks/redux";
+import {initializeApp} from "./store/appThunks";
 
 function App() {
+
+    const dispatch = useAppDispatch()
+    const initialized = useAppSelector(state => state.app.initialized)
+
+    useEffect(() => {
+        dispatch(initializeApp())
+    }, [])
+
+    if(!initialized){
+        return <div>Loading...</div>
+    }
     return (
         <div className="wrapper">
             <Header/>
-            <Login/>
+            <Main/>
         </div>
     )
 }

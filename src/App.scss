@@ -19,8 +19,17 @@ li {
 .wrapper {
   overflow: hidden;
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
+/*  display: flex;
+  flex-direction: column;*/
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+          "head"
+          "cov"
+          "main"
+;
+  grid-template-rows: 60px 0.001fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 [class*="_container"] {
