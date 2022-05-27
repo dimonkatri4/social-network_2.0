@@ -1,0 +1,26 @@
+
+.formControl.error textarea,
+.formControl.error input {
+    border: solid 1px #ff5756;
+}
+.formControl.error span,
+.commonErrorLogin {
+    color: #ff5756;
+    font-size: 16px;
+}
+
+.commonErrorLogin {
+    margin-bottom: 15px;
+}
+
+.inputBlock {
+    display: flex;
+    flex-flow: column;
+}
+
+.loginInput {
+    border: 1px solid #dddfe2;
+    width: -webkit-fill-available;
+    margin-bottom: 15px;
+    margin-right: 0px;
+}

@@ -1,0 +1,36 @@
+.menu li {
+    width: 120px;
+    height: 50px;
+  }
+
+.dropMenu {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    background-color: #e3e6f1;
+    color: #007bff;
+
+    li {
+        line-height: 50px;
+        text-align: center;
+    }
+
+    li:hover a {
+        background-color: #ffffff;
+        color: #424242;
+    }
+}
+
+.morePageItem {
+    position: relative;
+    cursor: default;
+
+    &:hover a {
+        background-color: #e3e6f1;
+        color: #007bff;
+    }
+
+    &:hover .dropMenu {
+        display: block;
+    }
+}
