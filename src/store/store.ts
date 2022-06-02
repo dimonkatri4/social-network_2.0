@@ -9,7 +9,7 @@ export const store = configureStore({
         auth: authReducer,
         profile: profileReducer,
         app: appReducer,
-        user: userReducer
+        user: userReducer,
     },
 })
 

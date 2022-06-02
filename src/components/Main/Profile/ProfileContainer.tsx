@@ -1,19 +1,18 @@
-import React, {useEffect} from 'react'
-import Profile from "./Profile";
-import {useNavigate, useParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {getProfile, getStatus} from '../../../store/profileThunks';
+import React, { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import Profile from './Profile'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
+import { getProfile, getStatus } from '../../../store/profileThunks'
 
-const ProfileContainer = () => {
-
+function ProfileContainer() {
     const dispatch = useAppDispatch()
-    const {isAuth, userId} = useAppSelector(state => state.auth)
+    const { isAuth, userId } = useAppSelector((state) => state.auth)
+    const profile = useAppSelector((state) => state.profile)
 
-    let navigate = useNavigate()
-    let params = useParams()
+    const navigate = useNavigate()
+    const params = useParams()
 
-    let profileId: number | null = params.userId ? parseInt(params.userId, 10) :
-        userId ? userId : null
+    const profileId: number | null = params.userId ? parseInt(params.userId, 10) : userId || null
 
     const refreshProfile = () => {
         if (profileId) {
@@ -28,7 +27,7 @@ const ProfileContainer = () => {
         refreshProfile()
     }, [profileId])
 
-    return <Profile isAuth={isAuth} profileId={profileId}/>
+    return <Profile isAuth={isAuth} profile={profile} isOwner={!params.userId} />
 }
 
 export default ProfileContainer

@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {captchaApi} from "../api/captchaApi";
 import {AppDispatch} from "./store";
 
-let initialState = {
+const initialState = {
     userId: null as number | null,
     email: '',
     login: '',

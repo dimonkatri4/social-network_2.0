@@ -1,0 +1,50 @@
+.addStatus {
+    color: #838383;
+}
+.statusBlock {
+    line-height: 1.1vw;
+    max-width: 70vw;
+    padding-left: 4px;
+}
+.textStatus {
+    font-size: 1.2vw;
+    color: #404040;
+    word-break: break-word;
+}
+
+.inputStatus {
+    background: white;
+    padding: 10px 50px 10px 15px;
+    overflow: visible;
+    outline: none;
+    font-size: 15px;
+    border: 1px solid #dddfe2;
+    min-width: 25vw;
+}
+
+.error {
+    color: #ff5756;
+    font-size: 16px;
+}
+
+.inputBlock {
+    position: relative;
+}
+.close,.updateStatus {
+    color: #838383;
+    position: absolute;
+    font-size: 15px;
+    cursor: pointer;
+    top:10px;
+}
+
+.close {
+    right: 15px;
+}
+.updateStatus {
+    right: 35px;
+}
+
+.close:hover, .updateStatus:hover {
+    color: #404040
+}

@@ -1,11 +1,15 @@
 import React from 'react'
-import style from "../header.module.scss"
+import style from '../header.module.scss'
 
-const Logo = () => {
+function Logo() {
     return (
         <div>
             <a href="/">
-                <img className={style.logo} src='http://wpkixx.com/html/winku/images/logo.png' alt="logo"/>
+                <img
+                    className={style.logo}
+                    src="http://wpkixx.com/html/winku/images/logo.png"
+                    alt="logo"
+                />
             </a>
         </div>
     )

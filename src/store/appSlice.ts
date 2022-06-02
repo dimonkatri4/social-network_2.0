@@ -1,7 +1,7 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    initialized: false
+    initialized: false,
 }
 
 export const appSlice = createSlice({
@@ -10,10 +10,10 @@ export const appSlice = createSlice({
     reducers: {
         initializedSuccess: (state) => {
             state.initialized = true
-        }
-    }
+        },
+    },
 })
 
-export const {initializedSuccess} = appSlice.actions
+export const { initializedSuccess } = appSlice.actions
 
 export default appSlice.reducer

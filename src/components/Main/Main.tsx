@@ -1,14 +1,15 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import style from './main.module.scss'
-import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
-import Login from "../Login/Login";
-import LeftPanel from "./LeftPanel/LeftPanel";
-import ProfileContainer from "./Profile/ProfileContainer";
+import Login from '../Login/Login'
+import LeftPanel from './LeftPanel/LeftPanel'
+import ProfileContainer from './Profile/ProfileContainer'
+import { useAppSelector } from '../../hooks/redux'
 
-const Main = () => {
-
-    let navigate = useNavigate()
-    let location = useLocation()
+function Main() {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const isAuth = useAppSelector((state) => state.auth.isAuth)
 
     useEffect(() => {
         location.pathname === '/' && navigate('/profile')
@@ -16,20 +17,19 @@ const Main = () => {
 
     return (
         <div className={style.main_page}>
-            <LeftPanel/>
+            {isAuth && <LeftPanel />}
             <Routes>
-                <Route path='profile/' element={<ProfileContainer/>}>
-                    <Route path=':userId' element={<ProfileContainer/>}/>
+                <Route path="profile/" element={<ProfileContainer />}>
+                    <Route path=":userId" element={<ProfileContainer />} />
                 </Route>
             </Routes>
             <div className={style.content}>
                 <Routes>
-                    <Route path='login' element={<Login/>}/>
+                    <Route path="login" element={<Login />} />
                 </Routes>
             </div>
-
         </div>
-    );
-};
+    )
+}
 
-export default Main;
+export default Main

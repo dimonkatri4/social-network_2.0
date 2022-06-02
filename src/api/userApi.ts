@@ -1,9 +1,14 @@
-import {instance} from "./baseApi";
-import {ResponseUser} from "../types/IUser";
+import { instance } from './baseApi'
+import { ResponseUser } from '../types/IUser'
 
-export const getUser = (pageSize: number, currentPage: number, friends?: boolean, term?: string) => {
+export const getUser = (
+    pageSize: number,
+    currentPage: number,
+    friends?: boolean,
+    term?: string
+) => {
     let urlParameter
-    if(!term) {
+    if (!term) {
         urlParameter = `users?count=${pageSize}&page=${currentPage}&friend=${friends}`
     } else {
         urlParameter = `users?count=${pageSize}&page=${currentPage}&friend=${friends}&term=${term}`

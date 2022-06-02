@@ -3,7 +3,7 @@ import {IPhotos, IProfile} from "../types/IProfile";
 
 const photoUser = 'photo';
 
-let initialState = {
+const initialState = {
     posts: [
         {
             id: 0,
@@ -62,6 +62,8 @@ let initialState = {
     error: '' as string | null
 }
 
+export type ProfileStateType = typeof initialState;
+
 const createNewPost = (id: number,message: string,
                        userName: string, date: string, photo: string) => ({
     id,
@@ -76,7 +78,7 @@ const createNewPost = (id: number,message: string,
     photo
 })
 
-let getDate = () => {
+const getDate = () => {
     const today = new Date();
     return today.toLocaleString();
 }
@@ -116,7 +118,7 @@ export const profileSlice = createSlice({
         },
         changeIsLiked: (state, action: PayloadAction<number>) => {
             state.posts.map(p => {
-                if (p['id'] === action.payload) {
+                if (p.id === action.payload) {
                     if (p.isLiked) {
                         p.isLiked = false
                         p.likeCount -= 1
