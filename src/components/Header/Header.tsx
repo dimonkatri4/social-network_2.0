@@ -5,20 +5,20 @@ import Menu from './Menu/Menu'
 import {IProfile} from "../../types/IProfile";
 import SearchBar from "./SearchBar/SearchBar";
 import SettingArea from "./SettingArea/SettingArea";
+import SignIn from "./SignIn/SignIn";
 
 interface Props {
     isAuth: boolean
-    login: string
     profileOwner: IProfile
 }
 
-function Header({isAuth, login, profileOwner}: Props) {
+function Header({isAuth, profileOwner}: Props) {
     return (
         <header className={style.header}>
             <div className={style.header_container}>
                 <Logo />
                 {isAuth ? <Menu /> : <SearchBar />}
-                {isAuth ? <SettingArea isAuth={isAuth} profileOwner={profileOwner} /> : null }
+                {isAuth ? <SettingArea isAuth={isAuth} profileOwner={profileOwner} /> : <SignIn isAuth={isAuth}/> }
             </div>
         </header>
     )
