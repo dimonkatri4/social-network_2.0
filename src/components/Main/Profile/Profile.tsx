@@ -2,6 +2,7 @@ import React from 'react'
 import Cover from "./Cover/Cover";
 import style from './profile.module.scss'
 import {ProfileStateType} from "../../../store/profileSlice";
+import CreatePost from './CreatePost/CreatePost';
 
 interface Props {
     profile: ProfileStateType
@@ -18,8 +19,8 @@ function Profile(props: Props) {
                    errorInStatus={props.profile.error}
             />
         <div className={style.content}>
-{/*            <CreatePostContainer/>
-            <MyPosts posts={props.profile.posts} /> */}
+            <CreatePost/>
+{/*            <MyPosts posts={props.profile.posts} /> */}
         </div>
         </>
     )
