@@ -28,7 +28,7 @@ function ProfileStatusWithHook(props: Props) {
     const useOutsideClick = (ref: React.RefObject<HTMLInputElement>) => {
         useEffect(() => {
             // Edit state if clicked on outside of element
-            const handleClickOutside = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const handleClickOutside = (e: any) => {
                 if (ref.current) {
                     if (editMode && !ref.current.contains(e.target)) {
                         exitOfInputStatus();
@@ -36,11 +36,9 @@ function ProfileStatusWithHook(props: Props) {
                 }
             }
             // Bind the event listener
-            // @ts-ignore
             document.addEventListener("mousedown", handleClickOutside);
             return () => {
                 // Unbind the event listener on clean up
-                // @ts-ignore
                 document.removeEventListener("mousedown", handleClickOutside);
             }
         }, [ref, editMode]);
