@@ -5,6 +5,7 @@ import Login from '../Login/Login'
 import LeftPanel from './LeftPanel/LeftPanel'
 import ProfileContainer from './Profile/ProfileContainer'
 import { useAppSelector } from '../../hooks/redux'
+import RightPanel from "./RightPanel/RightPanel";
 
 function Main() {
     const navigate = useNavigate()
@@ -28,6 +29,7 @@ function Main() {
                     <Route path="login" element={<Login />} />
                 </Routes>
             </div>
+            {isAuth && <RightPanel />}
         </div>
     )
 }
