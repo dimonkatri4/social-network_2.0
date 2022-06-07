@@ -1,5 +1,4 @@
 import React from 'react'
-import {faCamera} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import s from "./mainPhoto.module.css"
 import photoUser from '../../../../../assets/images/photo-user.jpg'

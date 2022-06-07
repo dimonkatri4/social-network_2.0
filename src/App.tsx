@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from './hooks/redux'
 import { initializeApp } from './store/appThunks'
 import Preloader from './components/common/Preloader/Preloader'
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './fontawesome'
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
         <div className="wrapper">
             <HeaderContainer />
             <Main />
-            <FontAwesomeIcon icon={["fab",'camera']} />
         </div>
     )
 }

@@ -3,6 +3,7 @@ import Cover from "./Cover/Cover";
 import style from './profile.module.scss'
 import {ProfileStateType} from "../../../store/profileSlice";
 import CreatePost from './CreatePost/CreatePost';
+import Posts from "./Posts/Posts";
 
 interface Props {
     profile: ProfileStateType
@@ -20,7 +21,7 @@ function Profile(props: Props) {
             />
         <div className={style.content}>
             <CreatePost/>
-{/*            <MyPosts posts={props.profile.posts} /> */}
+            <Posts posts={props.profile.posts} />
         </div>
         </>
     )

@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IPhotos, IProfile} from "../types/IProfile";
-
-const photoUser = 'photo';
+import photoUser from '../assets/images/photo-user.jpg'
 
 const initialState = {
     posts: [
@@ -90,7 +89,7 @@ export const profileSlice = createSlice({
         addPost: (state, action:PayloadAction<string>) => {
             const newPost = createNewPost(state.posts.length, action.payload,
                 state.profileOwner.fullName, getDate(), state.profileOwner.photos.small)
-            state.posts = state.posts.concat(newPost)
+            state.posts = ([newPost, ...state.posts])
         },
         setUsersProfile: (state, action: PayloadAction<IProfile>) => {
             state.profile = action.payload

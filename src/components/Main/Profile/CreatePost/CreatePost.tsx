@@ -37,7 +37,7 @@ const CreatePost = () => {
                                 <span className={style.iconPanel}><FontAwesomeIcon icon="image"/></span>
                                 <span className={style.iconPanel}><FontAwesomeIcon icon="video"/></span>
                                 <span className={style.iconPanel}><FontAwesomeIcon icon="camera"/></span>
-                                <button className="button">Publish</button>
+                                <button className="button" type='submit'>Publish</button>
                             </div>
                         </div>
                     </Form>
