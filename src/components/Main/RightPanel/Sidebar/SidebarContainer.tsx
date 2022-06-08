@@ -15,7 +15,7 @@ const SidebarContainer = () => {
 
     const searchUsers = (searchName: string) => {
         setUserSearchName(searchName)
-        dispatch(requestFriends(5, 1, true, searchName));
+        dispatch(requestFriends(5, 1, true, userSearchName));
     }
 
 

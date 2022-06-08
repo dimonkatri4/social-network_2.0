@@ -1,4 +1,4 @@
-interface UserContacts {
+export interface IUserContacts {
     github: string
     vk: string
     facebook: string
@@ -20,6 +20,6 @@ export interface IProfile {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    contacts: UserContacts
+    contacts: IUserContacts
     photos: IPhotos
 }
