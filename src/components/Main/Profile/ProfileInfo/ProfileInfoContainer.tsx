@@ -12,13 +12,21 @@ const ProfileInfoContainer = () => {
     const dispatch = useAppDispatch()
     const params = useParams()
 
-    const changeEditModeProfileD = (value: boolean) => {
+    const changeEditModeProfileDispatch = (value: boolean) => {
         dispatch(changeEditModeProfile(value))
     }
 
+    const updateProfileInfoDispatch = (profileData: IProfile) => {
+        dispatch(updateProfileInfo(profileData))
+    }
+
     return (
-        <ProfileInfo profile={profile} editModeProfile={editModeProfile}
-                     changeEditModeProfile={changeEditModeProfileD} isOwner={!params.userId} />
+        <ProfileInfo profile={profile}
+                     editModeProfile={editModeProfile}
+                     changeEditModeProfile={changeEditModeProfileDispatch}
+                     updateProfileInfo={updateProfileInfoDispatch}
+                     isOwner={!params.userId}
+        />
     );
 };
 

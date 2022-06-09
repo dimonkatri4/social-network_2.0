@@ -10,10 +10,11 @@ interface PropsProfileInfo {
     profile: IProfile
     editModeProfile: boolean
     changeEditModeProfile: (value: boolean) => void
+    updateProfileInfo: (profileData: IProfile) => void
     isOwner: boolean
 }
 
-const ProfileInfo = ({profile, editModeProfile, changeEditModeProfile, isOwner}: PropsProfileInfo) => {
+const ProfileInfo = ({profile, editModeProfile, changeEditModeProfile, isOwner, updateProfileInfo}: PropsProfileInfo) => {
 
     const goToEditMode = () => {
         changeEditModeProfile(true)
@@ -32,7 +33,11 @@ const ProfileInfo = ({profile, editModeProfile, changeEditModeProfile, isOwner}:
             <div className="caption">
                 <h3 className="title">Profile Info</h3>
             </div>
-            {editModeProfile ? <ProfileEditForm exitToEditMode={exitToEditMode} profile={profile}/> :
+            {editModeProfile ? <ProfileEditForm
+                    exitToEditMode={exitToEditMode}
+                    profile={profile}
+                    updateProfileInfo={updateProfileInfo}
+                /> :
                 <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode}/>}
         </div>
     );

@@ -53,7 +53,7 @@ const initialState = {
             photo: photoUser
         },
     ],
-    profile: {} as Partial<IProfile>,
+    profile: {} as IProfile,
     status: '',
     photo: {} as IPhotos,
     editModeProfile: false,
@@ -106,7 +106,7 @@ export const profileSlice = createSlice({
         savePhotoSuccess: (state, action: PayloadAction<IPhotos>) => {
             state.photo = action.payload
         },
-        updateProfileInfoSuccess: (state, action: PayloadAction<Partial<IProfile>>) => {
+        updateProfileInfoSuccess: (state, action: PayloadAction<IProfile>) => {
             state.profile = action.payload
         },
         changeEditModeProfile: (state, action: PayloadAction<boolean>) => {

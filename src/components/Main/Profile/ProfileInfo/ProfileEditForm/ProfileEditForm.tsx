@@ -1,7 +1,5 @@
 import React from 'react';
 import {Form, Formik} from "formik";
-import {updateProfileInfo} from "../../../../../store/profileThunks";
-import {useAppDispatch} from "../../../../../hooks/redux";
 import {MyTextInput} from "../../../../common/FormikFormsBuild/FormikFormsBuild";
 import classNames from "classnames";
 import style from './profileEditForm.module.scss'
@@ -10,17 +8,15 @@ import {IProfile} from "../../../../../types/IProfile";
 interface Props {
     exitToEditMode: () => void
     profile: IProfile
+    updateProfileInfo: (profileData: IProfile) => void
 }
 
-const ProfileEditForm = ({exitToEditMode, profile}: Props) => {
-
-    const dispatch = useAppDispatch()
-
+const ProfileEditForm = ({exitToEditMode, profile, updateProfileInfo}: Props) => {
     return (
         <Formik
             initialValues={profile}
             onSubmit={(formData) => {
-                dispatch(updateProfileInfo(formData))
+                updateProfileInfo(formData)
             }}
         >
             <Form>
