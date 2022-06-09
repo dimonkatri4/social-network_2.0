@@ -23,7 +23,7 @@ export const profileApi = {
             })
             .then((response) => response.data)
     },
-    updateProfileInfo(profile: IProfile) {
+    updateProfileInfo(profile: Partial<IProfile>) {
         return instance.put<IResponse>(`profile/`, { ...profile }).then((res) => res.data)
     },
 }

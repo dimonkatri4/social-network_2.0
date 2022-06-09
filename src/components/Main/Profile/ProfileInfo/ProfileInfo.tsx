@@ -3,16 +3,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import style from './profileInfo.module.scss'
 import classNames from "classnames";
 import {IProfile, IUserContacts} from "../../../../types/IProfile";
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import {IconProp} from '@fortawesome/fontawesome-svg-core';
+import ProfileEditForm from "./ProfileEditForm/ProfileEditForm";
 
 interface PropsProfileInfo {
     profile: IProfile
-    editModeProfile:boolean
+    editModeProfile: boolean
     changeEditModeProfile: (value: boolean) => void
     isOwner: boolean
 }
 
-const ProfileInfo = ({profile, editModeProfile,changeEditModeProfile, isOwner}: PropsProfileInfo) => {
+const ProfileInfo = ({profile, editModeProfile, changeEditModeProfile, isOwner}: PropsProfileInfo) => {
 
     const goToEditMode = () => {
         changeEditModeProfile(true)
@@ -27,16 +28,12 @@ const ProfileInfo = ({profile, editModeProfile,changeEditModeProfile, isOwner}: 
     }
 
     return (
-        <div className={classNames(style.profileInfo, 'profile_block')} >
+        <div className={classNames(style.profileInfo, 'profile_block')}>
             <div className="caption">
                 <h3 className="title">Profile Info</h3>
             </div>
-{/*            {editModeProfile ? <ProfileDataForm onSubmit={onSubmit}
-                                                      exitToEditMode={exitToEditMode}
-                                                      profile={profile}
-                                                      initialValues={profile}
-                /> :*/}
-                <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode}/>
+            {editModeProfile ? <ProfileEditForm exitToEditMode={exitToEditMode} profile={profile}/> :
+                <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode}/>}
         </div>
     );
 };
@@ -61,7 +58,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}: PropsProfileData) => {
             <span className={style.profileInfoValue}>{profile.lookingForAJobDescription}</span></div>}
         <div className={style.contacts}>
             {
-                Object.keys(profile.contacts).map((key ) => {
+                Object.keys(profile.contacts).map((key) => {
                     return profile.contacts[key as keyof IUserContacts] &&
                         <Contacts key={key} contactTitle={key as keyof IUserContacts}
                                   contactValue={profile.contacts[key as keyof IUserContacts]}/>

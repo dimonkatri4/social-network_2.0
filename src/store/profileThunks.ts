@@ -47,7 +47,7 @@ export const savePhoto = (photo: File) => async (dispatch: AppDispatch) => {
     }
 }
 
-export const updateProfileInfo = (profile: IProfile) => async (dispatch: AppDispatch) => {
+export const updateProfileInfo = (profile: Partial<IProfile>) => async (dispatch: AppDispatch) => {
     const data = await profileApi.updateProfileInfo(profile)
     if (data.resultCode === 0) {
         dispatch(updateProfileInfoSuccess(profile))
