@@ -8,7 +8,7 @@ interface Props {
     pageSize: number
     currentPage: number
     onPageChanged: (pageNumber:number) => void
-    portionSize: number
+    portionSize?: number
     isFriendsList?: boolean
     userSearchName?: string
 }

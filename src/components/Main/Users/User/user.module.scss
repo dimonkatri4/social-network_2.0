@@ -1,0 +1,65 @@
+.ava {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+}
+.userBlock {
+    padding: 20px;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #eaf1f6;
+    margin: 0 20px 20px;
+    display: flex;
+
+
+}
+.userBlock:hover {
+    box-shadow: 0 8px 8px #e1e8ec;
+    border-color: transparent;
+}
+.userPhoto {
+    box-shadow: 1px 1px 6px #e1e8ed;
+    border-radius: 100%;
+    display: inline-block;
+    height: fit-content;
+}
+
+.nameUser {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 550;
+    text-transform: capitalize;
+    color: #424242;
+}
+
+.dataUser {
+    align-self: center;
+    margin: 15px;
+}
+.dataUser a {
+    text-decoration: none;
+    color: #424242;
+}
+.statusUser {
+    color: #088dcd;
+    word-break: break-word;
+}
+
+.followBtn[disabled],
+.unfollowBtn[disabled] {
+    background-color:lightslategray;
+    cursor: default;
+}
+
+.followBtn[disabled]:hover,
+.unfollowBtn[disabled]:hover{
+    box-shadow: none;
+}
+
+.followBtn, .unfollowBtn {
+    margin-right: 10px;
+}
+
+.btn {
+    align-self: center;
+    margin-left: auto;
+}

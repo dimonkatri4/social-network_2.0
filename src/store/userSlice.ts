@@ -13,6 +13,7 @@ const initialState = {
     friendsList:[] as IUser[]
 }
 
+export type UserStateType = typeof initialState
 type ToggleFollowing = {
     isFetching: boolean
     userId: number
