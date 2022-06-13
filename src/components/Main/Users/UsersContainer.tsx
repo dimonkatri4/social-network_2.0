@@ -26,7 +26,7 @@ const UsersContainer = () => {
         dispatch(requestUsers(usersState.pageSize, pageNumber, usersState.isFriendsList, userSearchName))
     }
 
-    const showFriends = (isFriends: boolean ) => {
+    const showFriends = (isFriends?: boolean) => {
         dispatch(setCurrentPage(1))
         dispatch(toggleIsFriendsList(isFriends))
         dispatch(requestUsers(usersState.pageSize, 1, isFriends))
@@ -35,7 +35,7 @@ const UsersContainer = () => {
     const searchUsers = (searchName: string) => {
         dispatch(setCurrentPage(1))
         setUserSearchName(searchName)
-        dispatch(requestUsers(usersState.pageSize, 1, usersState.isFriendsList, userSearchName))
+        dispatch(requestUsers(usersState.pageSize, 1, usersState.isFriendsList, searchName))
     }
 
     const clearForm = () => {

@@ -9,7 +9,7 @@ const initialState = {
     currentPage: 1,
     isFetching: false,
     followingInProgress: [] as number[],
-    isFriendsList: true,
+    isFriendsList: true as boolean | undefined,
     friendsList:[] as IUser[]
 }
 
@@ -47,7 +47,7 @@ export const userSlice = createSlice({
                 return user
             })
         },
-        toggleIsFriendsList: (state, action: PayloadAction<boolean>) => {
+        toggleIsFriendsList: (state, action: PayloadAction<boolean | undefined>) => {
             state.isFriendsList = action.payload
         },
         setFriendsList: (state, action: PayloadAction<IUser[]>) => {

@@ -5,12 +5,13 @@ import Pagination from '../../common/Pagination/Pagination';
 import Preloader from '../../common/Preloader/Preloader';
 import style from './users.module.scss'
 import User from "./User/User";
+import UserSearchForm from "./UserSearchForm/UserSearchForm";
 
 interface Props {
     usersState: UserStateType
     userSearchName: string
     onPageChanged: (pageNumber: number) => void
-    showFriends: (isFriends: boolean) => void
+    showFriends: (isFriends?: boolean) => void
     searchUsers: (searchName: string) => void
     clearForm: () => void
     follow: (id: number) => void
@@ -28,13 +29,13 @@ const Users = (props: Props) => {
                     className={classNames(props.usersState.isFriendsList &&  style.friendsTitleActive,style.friendsTitle)}>
                     My Friends</h3>
                 <h3 onClick={() => {
-                    props.showFriends(false);
+                    props.showFriends();
                     props.clearForm();
                 }}
                     className={classNames(!props.usersState.isFriendsList &&  style.friendsTitleActive,style.friendsTitle)}>
                     All Users</h3>
             </div>
-            {/*<SearchUsersReduxForm onSubmit={onSubmit} searchUsers={searchUsers} userSearchName={userSearchName} />*/}
+            <UserSearchForm searchUsers={props.searchUsers} userSearchName={props.userSearchName} />
             <Pagination
                 currentPage={props.usersState.currentPage}
                 totalItemsCount={props.usersState.totalUsersCount}
