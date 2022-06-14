@@ -16,7 +16,7 @@ type ApiMethod = (userId: number) => Promise<IResponse>
 const followUnfollowFlow = async (dispatch: AppDispatch, userId: number, apiMethod: ApiMethod) => {
     dispatch(toggleFollowing({ isFetching: true, userId }))
     const data = await apiMethod(userId)
-    if (data.resultCode == 0) {
+    if (data.resultCode === 0) {
         dispatch(toggleFollowSuccess(userId))
     }
     dispatch(toggleFollowing({ isFetching: false, userId }))

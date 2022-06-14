@@ -1,18 +1,18 @@
 import React from 'react';
 import {Form, Formik} from "formik";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {MyTextInput} from "../../../common/FormikFormsBuild/FormikFormsBuild";
 import style from './userSearchForm.module.scss'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 interface Props {
     searchUsers: (searchName: string) => void
     userSearchName: string
 }
 
-const UserSearchForm = ({searchUsers, userSearchName}: Props) => {
+function UserSearchForm({searchUsers, userSearchName}: Props) {
     const clearForm = (reset: () => void) => {
         reset();
-        userSearchName && searchUsers('');
+        if(userSearchName) {searchUsers('')}
     }
     return (
         <Formik initialValues={{userSearchName}} onSubmit={({userSearchName}) => searchUsers(userSearchName)}>
@@ -25,6 +25,6 @@ const UserSearchForm = ({searchUsers, userSearchName}: Props) => {
             }
         </Formik>
     );
-};
+}
 
 export default UserSearchForm;

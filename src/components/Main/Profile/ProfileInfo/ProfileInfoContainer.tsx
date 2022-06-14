@@ -1,14 +1,13 @@
-import React from 'react';
-import ProfileInfo from "./ProfileInfo";
-import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
-import {updateProfileInfo} from "../../../../store/profileThunks";
-import {IProfile} from "../../../../types/IProfile";
-import { changeEditModeProfile } from '../../../../store/profileSlice';
-import {useParams} from "react-router-dom";
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import ProfileInfo from './ProfileInfo'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
+import { updateProfileInfo } from '../../../../store/profileThunks'
+import { IProfile } from '../../../../types/IProfile'
+import { changeEditModeProfile } from '../../../../store/profileSlice'
 
-const ProfileInfoContainer = () => {
-
-    const {profile, editModeProfile} = useAppSelector(state => state.profile)
+function ProfileInfoContainer() {
+    const { profile, editModeProfile } = useAppSelector((state) => state.profile)
     const dispatch = useAppDispatch()
     const params = useParams()
 
@@ -21,13 +20,14 @@ const ProfileInfoContainer = () => {
     }
 
     return (
-        <ProfileInfo profile={profile}
-                     editModeProfile={editModeProfile}
-                     changeEditModeProfile={changeEditModeProfileDispatch}
-                     updateProfileInfo={updateProfileInfoDispatch}
-                     isOwner={!params.userId}
+        <ProfileInfo
+            profile={profile}
+            editModeProfile={editModeProfile}
+            changeEditModeProfile={changeEditModeProfileDispatch}
+            updateProfileInfo={updateProfileInfoDispatch}
+            isOwner={!params.userId}
         />
-    );
-};
+    )
+}
 
-export default ProfileInfoContainer;
+export default ProfileInfoContainer

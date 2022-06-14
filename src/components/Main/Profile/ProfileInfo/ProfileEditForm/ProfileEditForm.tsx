@@ -1,7 +1,7 @@
 import React from 'react';
 import {Form, Formik} from "formik";
-import {MyTextInput} from "../../../../common/FormikFormsBuild/FormikFormsBuild";
 import classNames from "classnames";
+import {MyTextInput} from "../../../../common/FormikFormsBuild/FormikFormsBuild";
 import style from './profileEditForm.module.scss'
 import {IProfile} from "../../../../../types/IProfile";
 
@@ -11,7 +11,7 @@ interface Props {
     updateProfileInfo: (profileData: IProfile) => void
 }
 
-const ProfileEditForm = ({exitToEditMode, profile, updateProfileInfo}: Props) => {
+function ProfileEditForm({exitToEditMode, profile, updateProfileInfo}: Props) {
     return (
         <Formik
             initialValues={profile}
@@ -23,7 +23,7 @@ const ProfileEditForm = ({exitToEditMode, profile, updateProfileInfo}: Props) =>
                 <div className={style.infoItem}> Full Name:
                     <MyTextInput
                         name='fullName'
-                        placeholder={'Full Name'}
+                        placeholder="Full Name"
                         className={classNames("inputPlace", style.inputItem)}
                     />
                 </div>
@@ -46,26 +46,24 @@ const ProfileEditForm = ({exitToEditMode, profile, updateProfileInfo}: Props) =>
                         placeholder='Your professional skills'
                     />
                 </div>
-                {Object.keys(profile.contacts).map((key) => {
-                        return <ContactsForm key={key} contactTitle={key} />
-                    })}
+                {Object.keys(profile.contacts).map((key) => <ContactsForm key={key} contactTitle={key} />)}
                 <div className={style.buttonsBlock}>
-                    <button className="button">Save</button>
-                    <button className="button" onClick={exitToEditMode}>Exit</button>
+                    <button type='button' className="button">Save</button>
+                    <button type='button' className="button" onClick={exitToEditMode}>Exit</button>
                 </div>
             </Form>
         </Formik>
     );
-};
+}
 
 interface PropsContactsForm {
     contactTitle: string
 }
-const ContactsForm = ({contactTitle}: PropsContactsForm) => {
+function ContactsForm({contactTitle}: PropsContactsForm) {
     return <div className={style.infoItem}>
         <span>{contactTitle}:</span>
         <MyTextInput className={classNames("inputPlace", style.inputItem)}
-                     name={"contacts." + contactTitle}/>
+                     name={`contacts.${  contactTitle}`}/>
     </div>
 }
 

@@ -6,7 +6,7 @@ function SearchBar() {
     return (
         <div className={style.searchBox}>
             <input type="text" placeholder="Search Friend" />
-            <button>
+            <button type='button'>
                 <img className={style.searchIcon} src={searchIcon} alt="search" />
             </button>
         </div>

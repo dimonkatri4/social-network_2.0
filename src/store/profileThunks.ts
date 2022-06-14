@@ -36,6 +36,7 @@ export const updateStatus = (status: string) => async (dispatch: AppDispatch) =>
             const errorMessage = data.messages.length > 0 ? data.messages[0] : 'Other Error'
             dispatch(setErrorInStatus(errorMessage))
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         dispatch(setErrorInStatus(`Problem with server. Status Code: ${error.response.status}`))
     }

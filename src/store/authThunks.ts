@@ -13,6 +13,12 @@ export const getAuthUserData = () => async (dispatch: AppDispatch) => {
     }
 }
 
+export const getCaptchaUrl = () => async (dispatch: AppDispatch) => {
+    const data = await captchaApi.getCaptchaUrl()
+    const captchaUrl = data.url
+    dispatch(getCaptchaUrlSuccess(captchaUrl))
+}
+
 export const login =
     (userLogin: string, password: string, rememberMe?: boolean, captcha?: string) =>
     async (dispatch: AppDispatch) => {
@@ -36,8 +42,4 @@ export const logout = () => async (dispatch: AppDispatch) => {
         dispatch(setAuthUserData({ userId: null, email: '', login: '', isAuth: false }))
     }
 }
-export const getCaptchaUrl = () => async (dispatch: AppDispatch) => {
-    const data = await captchaApi.getCaptchaUrl()
-    const captchaUrl = data.url
-    dispatch(getCaptchaUrlSuccess(captchaUrl))
-}
+

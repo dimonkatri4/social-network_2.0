@@ -1,11 +1,6 @@
 import { FieldHookConfig, useField } from 'formik'
 import React from 'react'
-import classNames from 'classnames'
 import style from './formsControl.module.scss'
-
-interface OtherProps {
-    className: string;
-}
 
 export function MyTextInput({ className, ...props }: FieldHookConfig<string>) {
     const [field, meta] = useField(props)
@@ -31,11 +26,7 @@ export function MyTextarea({ className, ...props }: FieldHookConfig<string>) {
     return (
         <div className={`${style.formControl} ${hasError && style.error}`}>
             <div className={style.inputBlock}>
-                <textarea
-                    className={className}
-                    {...field}
-                    placeholder={props.placeholder}
-                />
+                <textarea className={className} {...field} placeholder={props.placeholder} />
             </div>
             {meta.error && <span>{meta.error}</span>}
         </div>

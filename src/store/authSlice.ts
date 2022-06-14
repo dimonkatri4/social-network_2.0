@@ -1,6 +1,4 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {captchaApi} from "../api/captchaApi";
-import {AppDispatch} from "./store";
 
 const initialState = {
     userId: null as number | null,
@@ -31,9 +29,3 @@ export const authSlice = createSlice({
 
 export const {setAuthUserData, getCaptchaUrlSuccess} = authSlice.actions
 export default authSlice.reducer
-
-export const getCaptchaUrl = () => async (dispatch: AppDispatch) => {
-    const data = await captchaApi.getCaptchaUrl()
-    const captchaUrl = data.url
-    dispatch(getCaptchaUrlSuccess(captchaUrl))
-}

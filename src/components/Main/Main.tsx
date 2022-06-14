@@ -5,8 +5,8 @@ import Login from '../Login/Login'
 import LeftPanel from './LeftPanel/LeftPanel'
 import ProfileContainer from './Profile/ProfileContainer'
 import { useAppSelector } from '../../hooks/redux'
-import RightPanel from "./RightPanel/RightPanel";
-import UsersContainer from "./Users/UsersContainer";
+import RightPanel from './RightPanel/RightPanel'
+import UsersContainer from './Users/UsersContainer'
 
 function Main() {
     const navigate = useNavigate()
@@ -27,7 +27,7 @@ function Main() {
             </Routes>
             <div className={style.content}>
                 <Routes>
-                    <Route path='/users' element={<UsersContainer />} />
+                    <Route path="/users" element={<UsersContainer />} />
                     <Route path="login" element={<Login />} />
                 </Routes>
             </div>

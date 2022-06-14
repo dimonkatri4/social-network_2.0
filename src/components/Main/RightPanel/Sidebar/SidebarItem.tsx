@@ -8,7 +8,7 @@ interface Props {
     name: string
 }
 
-const SidebarItem = ({id, avatar, name}: Props) => {
+function SidebarItem({id, avatar, name}: Props) {
     return (
         <div>
             <NavLink className={style.friend} to={`/profile/${id}`}>
@@ -17,6 +17,6 @@ const SidebarItem = ({id, avatar, name}: Props) => {
             </NavLink>
         </div>
     );
-};
+}
 
 export default SidebarItem;

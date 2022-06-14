@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {useAppDispatch, useAppSelector} from "../../../../hooks/redux";
-import {requestFriends} from "../../../../store/userThunks";
-import Sidebar from './Sidebar';
+import React, { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
+import { requestFriends } from '../../../../store/userThunks'
+import Sidebar from './Sidebar'
 
-const SidebarContainer = () => {
-
+function SidebarContainer() {
     const dispatch = useAppDispatch()
-    const {friendsList, isFetching } = useAppSelector(state => state.user)
+    const { friendsList } = useAppSelector((state) => state.user)
     const [userSearchName, setUserSearchName] = useState('')
 
     useEffect(() => {
@@ -15,13 +14,10 @@ const SidebarContainer = () => {
 
     const searchUsers = (searchName: string) => {
         setUserSearchName(searchName)
-        dispatch(requestFriends(5, 1, true, userSearchName));
+        dispatch(requestFriends(5, 1, true, userSearchName))
     }
 
+    return <Sidebar friends={friendsList} searchUsers={searchUsers} />
+}
 
-    return (
-        <Sidebar friends={friendsList} searchUsers={searchUsers} />
-    );
-};
-
-export default SidebarContainer;
+export default SidebarContainer

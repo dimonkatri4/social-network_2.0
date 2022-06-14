@@ -17,7 +17,8 @@ import {
     faAngleDoubleLeft,
     faAngleDoubleRight,
     faAngleRight,
-    faAngleLeft, faTimes,
+    faAngleLeft,
+    faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faInstagram,

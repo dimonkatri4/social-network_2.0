@@ -1,9 +1,9 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import style from './profileInfo.module.scss'
 import classNames from "classnames";
-import {IProfile, IUserContacts} from "../../../../types/IProfile";
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
+import style from './profileInfo.module.scss'
+import {IProfile, IUserContacts} from "../../../../types/IProfile";
 import ProfileEditForm from "./ProfileEditForm/ProfileEditForm";
 
 interface PropsProfileInfo {
@@ -14,7 +14,7 @@ interface PropsProfileInfo {
     isOwner: boolean
 }
 
-const ProfileInfo = ({profile, editModeProfile, changeEditModeProfile, isOwner, updateProfileInfo}: PropsProfileInfo) => {
+function ProfileInfo({profile, editModeProfile, changeEditModeProfile, isOwner, updateProfileInfo}: PropsProfileInfo) {
 
     const goToEditMode = () => {
         changeEditModeProfile(true)
@@ -25,7 +25,7 @@ const ProfileInfo = ({profile, editModeProfile, changeEditModeProfile, isOwner, 
     }
 
     if (!Object.keys(profile).length) {
-        return <div></div>
+        return <div />
     }
 
     return (
@@ -41,7 +41,7 @@ const ProfileInfo = ({profile, editModeProfile, changeEditModeProfile, isOwner, 
                 <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode}/>}
         </div>
     );
-};
+}
 
 interface PropsProfileData {
     profile: IProfile
@@ -49,7 +49,7 @@ interface PropsProfileData {
     goToEditMode: () => void
 }
 
-const ProfileData = ({profile, isOwner, goToEditMode}: PropsProfileData) => {
+function ProfileData({profile, isOwner, goToEditMode}: PropsProfileData) {
     return <div>
         <div className={style.profileInfoTitle}>
             About Me: <span className={style.profileInfoValue}>{profile.aboutMe}</span>
@@ -63,14 +63,12 @@ const ProfileData = ({profile, isOwner, goToEditMode}: PropsProfileData) => {
             <span className={style.profileInfoValue}>{profile.lookingForAJobDescription}</span></div>}
         <div className={style.contacts}>
             {
-                Object.keys(profile.contacts).map((key) => {
-                    return profile.contacts[key as keyof IUserContacts] &&
+                Object.keys(profile.contacts).map((key) => profile.contacts[key as keyof IUserContacts] &&
                         <Contacts key={key} contactTitle={key as keyof IUserContacts}
-                                  contactValue={profile.contacts[key as keyof IUserContacts]}/>
-                })}
+                                  contactValue={profile.contacts[key as keyof IUserContacts]}/>)}
         </div>
         {isOwner && <div className={style.editButton}>
-            <button className="button" onClick={goToEditMode}>Edit Profile</button>
+            <button type='button' className="button" onClick={goToEditMode}>Edit Profile</button>
         </div>}
     </div>
 }
@@ -80,7 +78,7 @@ interface PropsContacts {
     contactValue: string
 }
 
-const Contacts = ({contactTitle, contactValue}: PropsContacts) => {
+function Contacts({contactTitle, contactValue}: PropsContacts) {
     const contactsIcon = {
         facebook: ["fab", "facebook-square"],
         github: ["fab", "github-square"],
@@ -92,7 +90,7 @@ const Contacts = ({contactTitle, contactValue}: PropsContacts) => {
         youtube: ["fab", "youtube"]
     }
     return <div className={style.contact}>
-        {contactValue && <div><a className={style.contactIcon} href={contactValue} title={contactTitle} target="_blank">
+        {contactValue && <div><a className={style.contactIcon} href={contactValue} title={contactTitle} target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={contactsIcon[contactTitle] as IconProp}/>
         </a></div>}
     </div>

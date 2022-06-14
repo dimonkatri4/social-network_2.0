@@ -15,7 +15,7 @@ function Menu() {
                 <NavLink to="/settings">Account Settings</NavLink>
             </li>
             <li className={style.morePageItem}>
-                <a>More Page</a>
+                <a href='/'>More Page</a>
                 <ul className={style.dropMenu}>
                     <li>
                         <NavLink to="/users">Users</NavLink>

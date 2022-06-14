@@ -1,6 +1,6 @@
 import React from 'react';
-import { UserStateType } from '../../../store/userSlice';
 import classNames from "classnames";
+import { UserStateType } from '../../../store/userSlice';
 import Pagination from '../../common/Pagination/Pagination';
 import Preloader from '../../common/Preloader/Preloader';
 import style from './users.module.scss'
@@ -18,7 +18,7 @@ interface Props {
     unfollow: (id: number) => void
 }
 
-const Users = (props: Props) => {
+function Users(props: Props) {
     return (
         <div className="profile_block">
             <div className={classNames("caption",style.friendsCaption)}>
@@ -58,6 +58,6 @@ const Users = (props: Props) => {
                 </div> }
         </div>
     );
-};
+}
 
 export default Users;

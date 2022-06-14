@@ -9,7 +9,7 @@ interface Props {
     profileOwner: IProfile
 }
 
-const SettingArea = (props: Props) => {
+function SettingArea(props: Props) {
     return (
         <div className={`${s.setting_area} setting_area`}>
             <SettingPanel/>

@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import Users from "./Users";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {follow, requestUsers, unfollow} from "../../../store/userThunks";
-import { setCurrentPage, toggleIsFriendsList } from '../../../store/userSlice';
+import React, { useEffect, useState } from 'react'
+import Users from './Users'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
+import { follow, requestUsers, unfollow } from '../../../store/userThunks'
+import { setCurrentPage, toggleIsFriendsList } from '../../../store/userSlice'
 
-const UsersContainer = () => {
-
+function UsersContainer() {
     const dispatch = useAppDispatch()
-    const usersState = useAppSelector(state => state.user)
+    const usersState = useAppSelector((state) => state.user)
     const [userSearchName, setUserSearchName] = useState('')
 
     useEffect(() => {
-        dispatch(requestUsers(usersState.pageSize, usersState.currentPage, usersState.isFriendsList))
+        dispatch(
+            requestUsers(usersState.pageSize, usersState.currentPage, usersState.isFriendsList)
+        )
     }, [])
 
     const followDispatch = (id: number) => {
@@ -23,7 +24,9 @@ const UsersContainer = () => {
 
     const onPageChanged = (pageNumber: number) => {
         dispatch(setCurrentPage(pageNumber))
-        dispatch(requestUsers(usersState.pageSize, pageNumber, usersState.isFriendsList, userSearchName))
+        dispatch(
+            requestUsers(usersState.pageSize, pageNumber, usersState.isFriendsList, userSearchName)
+        )
     }
 
     const showFriends = (isFriends?: boolean) => {
@@ -44,7 +47,7 @@ const UsersContainer = () => {
 
     return (
         <Users
-            usersState = {usersState}
+            usersState={usersState}
             onPageChanged={onPageChanged}
             showFriends={showFriends}
             searchUsers={searchUsers}
@@ -53,7 +56,7 @@ const UsersContainer = () => {
             unfollow={unfollowDispatch}
             userSearchName={userSearchName}
         />
-    );
-};
+    )
+}
 
-export default UsersContainer;
+export default UsersContainer

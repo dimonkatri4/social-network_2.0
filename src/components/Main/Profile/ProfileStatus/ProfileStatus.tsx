@@ -28,6 +28,7 @@ function ProfileStatusWithHook(props: Props) {
     const useOutsideClick = (ref: React.RefObject<HTMLInputElement>) => {
         useEffect(() => {
             // Edit state if clicked on outside of element
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const handleClickOutside = (e: any) => {
                 if (ref.current) {
                     if (editMode && !ref.current.contains(e.target)) {
@@ -67,6 +68,7 @@ function ProfileStatusWithHook(props: Props) {
         setStatus(text);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleKeyDown = (e: any) => {
         e.key === 'Enter' && updateProfileStatus();
         e.key === 'Escape' && exitOfInputStatus();

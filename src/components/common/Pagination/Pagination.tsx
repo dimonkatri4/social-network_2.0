@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import style from "./pagination.module.scss";
 import classNames from "classnames";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import style from "./pagination.module.scss";
 
 interface Props {
     totalItemsCount: number
@@ -13,31 +13,29 @@ interface Props {
     userSearchName?: string
 }
 
-const Pagination = ({totalItemsCount,
+function Pagination({totalItemsCount,
                         pageSize,
                         currentPage,
                         onPageChanged,
                         portionSize = 10,
                         isFriendsList,
-                        userSearchName}: Props) => {
+                        userSearchName}: Props) {
 
-    let pageCount = Math.ceil(totalItemsCount / pageSize);
+    const pageCount = Math.ceil(totalItemsCount / pageSize);
 
-    let pages = [];
+    const pages = [];
 
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i)
     }
 
-    let currentPortion = Math.ceil(currentPage / portionSize);
-    let portionCount = Math.ceil(pageCount / portionSize);
-    let [portionNumber, setPortionNumber] = useState(1);
-    let leftPortionPageNumber = ((portionNumber - 1) * portionSize + 1);
-    let rightPortionPageNumber = (portionNumber * portionSize);
+    const currentPortion = Math.ceil(currentPage / portionSize);
+    const portionCount = Math.ceil(pageCount / portionSize);
+    const [portionNumber, setPortionNumber] = useState(1);
+    const leftPortionPageNumber = ((portionNumber - 1) * portionSize + 1);
+    const rightPortionPageNumber = (portionNumber * portionSize);
 
-    useEffect(() => {
-        return setPortionNumber(currentPortion)
-    }, [isFriendsList, userSearchName, currentPortion])
+    useEffect(() => setPortionNumber(currentPortion), [isFriendsList, userSearchName, currentPortion])
 
     return (
         <div className={style.pageCount}>
@@ -60,7 +58,7 @@ const Pagination = ({totalItemsCount,
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map(p => <span className={classNames(currentPage === p && style.current, style.numberPage)}
-                                onClick={(event) => onPageChanged(p)}
+                                onClick={() => onPageChanged(p)}
                                 key={p}
                                 title={currentPage !== p ? "Click to select a page" : "Current page"}
                 >{p}</span>)}

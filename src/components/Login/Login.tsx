@@ -7,8 +7,7 @@ import s from './login.module.scss'
 import winkSmile from '../../assets/images/winkSmile.png'
 import logo from '../../assets/images/logo.png'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { getCaptchaUrl } from '../../store/authSlice'
-import { login } from '../../store/authThunks'
+import {getCaptchaUrl, login} from '../../store/authThunks'
 import { MyTextInput } from '../common/FormikFormsBuild/FormikFormsBuild'
 
 interface Props {
@@ -95,11 +94,11 @@ function Login() {
                     Welcome to the <br />
                     social network
                     <div>
-                        <img src={logo} />
+                        <img src={logo} alt='logo' />
                     </div>
                 </div>
                 <div className={s.smile}>
-                    <img src={winkSmile} />
+                    <img src={winkSmile} alt='logo-smile'/>
                 </div>
             </div>
             <div className={classNames('profile_block', s.loginForm)}>

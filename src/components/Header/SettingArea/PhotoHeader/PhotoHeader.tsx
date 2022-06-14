@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react'
-import s from "./photoHeader.module.scss"
 import {NavLink} from "react-router-dom";
 import classNames from "classnames";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import s from "./photoHeader.module.scss"
 import {IProfile} from "../../../../types/IProfile";
 import {logout} from "../../../../store/authThunks";
 import {useAppDispatch} from "../../../../hooks/redux";
@@ -12,11 +12,11 @@ interface Props {
     profileOwner: IProfile
 }
 
-const PhotoHeader = ({isAuth, profileOwner}: Props) => {
+function PhotoHeader({isAuth, profileOwner}: Props) {
 
     const dispatch = useAppDispatch()
 
-    let [clickedInside, setClickedInside] = useState(false)
+    const [clickedInside, setClickedInside] = useState(false)
 
     /**
      * Hook that edit state clicks outside of the passed ref
@@ -26,6 +26,7 @@ const PhotoHeader = ({isAuth, profileOwner}: Props) => {
             /**
              * Edit state if clicked on outside of element
              */
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const handleClickOutside = (e: any) => {
                 if (ref.current) {
                     if (!ref.current.contains(e.target)) {

@@ -1,8 +1,8 @@
 import React from 'react';
+import {Form, Formik} from "formik";
 import {IUser} from '../../../../types/IUser';
 import style from './sidebar.module.scss'
 import SidebarItem from "./SidebarItem";
-import {Form, Formik} from "formik";
 import {MyTextInput} from "../../../common/FormikFormsBuild/FormikFormsBuild";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
     searchUsers: (searchName: string) => void
 }
 
-const Sidebar = ({friends, searchUsers}: Props) => {
+function Sidebar({friends, searchUsers}: Props) {
 
     const friendElement = friends.map(user => <SidebarItem
         key={user.id}
@@ -32,10 +32,10 @@ const Sidebar = ({friends, searchUsers}: Props) => {
             </div>
         </div>
     );
-};
+}
 
 
-const SearchUserInSidebar = ({searchUsers}: Omit<Props, 'friends'> ) => {
+function SearchUserInSidebar({searchUsers}: Omit<Props, 'friends'>) {
     return (
         <Formik
     initialValues={{
@@ -45,11 +45,9 @@ const SearchUserInSidebar = ({searchUsers}: Omit<Props, 'friends'> ) => {
         searchUsers(searchUsersName)
     }}
         >
-            {(formik) => (
                 <Form>
                     <MyTextInput name='searchUsersName' placeholder='Search Friends...' />
                 </Form>
-            )}
         </Formik>
     )
 }

@@ -4,7 +4,7 @@ import Main from './components/Main/Main'
 import { useAppDispatch, useAppSelector } from './hooks/redux'
 import { initializeApp } from './store/appThunks'
 import Preloader from './components/common/Preloader/Preloader'
-import HeaderContainer from "./components/Header/HeaderContainer";
+import HeaderContainer from './components/Header/HeaderContainer'
 import './fontawesome'
 
 function App() {

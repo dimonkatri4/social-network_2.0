@@ -1,4 +1,4 @@
-export interface IResponse<D = {}> {
+export interface IResponse<D = Record<string, never>> {
     resultCode: number
     messages: string[]
     fieldsErrors: []
