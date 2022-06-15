@@ -7,7 +7,6 @@ import Posts from "./Posts/Posts";
 
 interface Props {
     profile: ProfileStateType
-    isAuth: boolean
     isOwner: boolean
 }
 

@@ -27,7 +27,13 @@ function ProfileContainer() {
         refreshProfile()
     }, [profileId])
 
-    return <Profile isAuth={isAuth} profile={profile} isOwner={!params.userId} />
+    useEffect(() => {
+        if (!isAuth) {
+            navigate('/login')
+        }
+    }, [isAuth])
+
+    return <Profile profile={profile} isOwner={!params.userId} />
 }
 
 export default ProfileContainer

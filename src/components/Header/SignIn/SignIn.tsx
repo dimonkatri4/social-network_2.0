@@ -44,7 +44,9 @@ function SignIn({ isAuth }: Props) {
                     <MyTextInput name="loginHeader" type="email" placeholder="Email" />
                     <MyTextInput name="passwordHeader" type="password" placeholder="Password" />
                     {/*                    { error && <div className={style.commonErrorLogin}>{error}</div>} */}
-                    <button className="button" type='button'>Log In</button>
+                    <button className="button" type="button">
+                        Log In
+                    </button>
                 </div>
             </Form>
         </Formik>

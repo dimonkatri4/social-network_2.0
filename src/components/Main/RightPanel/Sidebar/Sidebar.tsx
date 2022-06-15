@@ -23,7 +23,7 @@ function Sidebar({friends, searchUsers}: Props) {
         <div className={` ${style.sidebar} profile_block`}>
             <div className='friends_block'>
                 <div className="caption">
-                    <h3 className="title">Friends</h3>
+                    <h3 className="title">My Friends</h3>
                 </div>
                 <div className={style.search}>
                     <SearchUserInSidebar searchUsers={searchUsers}/>

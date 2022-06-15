@@ -42,4 +42,3 @@ export const logout = () => async (dispatch: AppDispatch) => {
         dispatch(setAuthUserData({ userId: null, email: '', login: '', isAuth: false }))
     }
 }
-

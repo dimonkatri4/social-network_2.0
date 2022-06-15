@@ -44,6 +44,7 @@ module.exports = {
     'no-unused-expressions': 0,
     'react/jsx-no-useless-fragment': 0,
     'consistent-return': 0,
-    'jsx-a11y/no-autofocus': 0
+    'jsx-a11y/no-autofocus': 0,
+    'jsx-a11y/label-has-associated-control': 0
   },
 };

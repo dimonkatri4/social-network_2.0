@@ -15,10 +15,10 @@ function UserSearchForm({searchUsers, userSearchName}: Props) {
         if(userSearchName) {searchUsers('')}
     }
     return (
-        <Formik initialValues={{userSearchName}} onSubmit={({userSearchName}) => searchUsers(userSearchName)}>
+        <Formik initialValues={{searchName:userSearchName}} onSubmit={({searchName}) => searchUsers(searchName)}>
             {({resetForm}) =>
                 <Form className={style.searchBox}>
-                    <MyTextInput name='userSearchName' placeholder='Search Friend'/>
+                    <MyTextInput name='searchName' placeholder='Search Friend'/>
                     <button type='submit' className={style.searchButton}><FontAwesomeIcon icon='search'/></button>
                     <span className={style.cleanButton} onClick={() => clearForm(resetForm)}> <FontAwesomeIcon icon='times'/></span>
                 </Form>
