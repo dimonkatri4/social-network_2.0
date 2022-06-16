@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import classNames from 'classnames'
-import { useNavigate } from 'react-router-dom'
+import {Navigate, useNavigate} from 'react-router-dom'
 import s from './login.module.scss'
 import winkSmile from '../../assets/images/winkSmile.png'
 import logo from '../../assets/images/logo.png'
@@ -81,13 +81,17 @@ function Login() {
     const { isAuth, captchaUrl } = useAppSelector((state) => state.auth)
     const navigate = useNavigate()
 
+    if(isAuth){navigate('/profile')}
+
     useEffect(() => {
         if (isAuth) {
             navigate('/profile')
         }
-    }, [isAuth])
-
-    return (
+    }, [])
+/*        if(isAuth) {
+            return <Navigate replace to='/profile'/>
+        } */
+        return (
         <div className={classNames(s.loginPage, s.login_container)}>
             <div className={s.greeting}>
                 <div className={s.greetingText}>

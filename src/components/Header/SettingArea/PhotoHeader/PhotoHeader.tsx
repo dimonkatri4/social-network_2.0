@@ -72,7 +72,7 @@ function PhotoHeader({isAuth, profileOwner}: Props) {
                         </NavLink>
                     </li>
                     <li className={s.itemMenu} onClick={() => dispatch(logout())}>
-                        <NavLink to='/login'>
+                        <NavLink to='/login' >
                             <FontAwesomeIcon icon="sign-out-alt" className={s.icon}/>
                             Log Out
                         </NavLink>
