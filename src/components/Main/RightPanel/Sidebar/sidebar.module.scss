@@ -1,19 +1,20 @@
 .sidebar {
-    grid-area: sd;
-    margin: 10px;
-    padding: 20px;
-    height: fit-content;
-  }
-.search input {
-  border: 1px solid #eaeaea;
-    color: #575757;
-    font-size: 14px;
-    padding: 5px 10px;
-    outline: none;
+  grid-area: sd;
+  margin: 10px;
+  padding: 20px;
+  height: fit-content;
 }
 
 .search {
   margin: 15px 0px;
+
+  input {
+    border: 1px solid #eaeaea;
+    color: #575757;
+    font-size: 14px;
+    padding: 5px 10px;
+    outline: none;
+  }
 }
 
 .friend {
@@ -25,6 +26,7 @@
   color: #575757;
   margin-bottom: 20px;
 }
+
 .ava {
   height: 50px;
   width: 50px;

@@ -30,21 +30,22 @@
 .inputBlock {
     position: relative;
 }
-.close,.updateStatus {
+
+@mixin close-updateStatus($r) {
     color: #838383;
     position: absolute;
     font-size: 15px;
     cursor: pointer;
     top:10px;
+    right: $r;
+    &:hover {
+        color: #404040
+    }
 }
 
 .close {
-    right: 15px;
+    @include close-updateStatus(15px);
 }
 .updateStatus {
-    right: 35px;
-}
-
-.close:hover, .updateStatus:hover {
-    color: #404040
+    @include close-updateStatus(35px);
 }

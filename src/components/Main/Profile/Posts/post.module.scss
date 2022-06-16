@@ -1,69 +1,81 @@
-.item img {
+.item {
+  padding: 30px;
+
+  img {
     height: 50px;
     width: 50px;
     border-radius: 30px;
-}
-
-.item {
-    padding: 30px;
+  }
 }
 
 .caption {
-    display: flex;
-    position: relative;
-}
-.caption div {
+  display: flex;
+  position: relative;
+
+  div {
     margin-left: 15px;
-}
-.date {
-    position: absolute;
-    top: 25px;
-    left: 50px;
-    color: #999;
-    font-size: 13px;
-}
-.message {
-    margin-top: 15px;
-    line-height: 26px;
-    letter-spacing: 0.2px;
-    font-size: 17px;
-    word-break: break-word;
-}
-.userName {
-   color: #088dcd;
-   text-transform: capitalize;
-}
-.post_panel {
-    margin-top: 20px;
+  }
 }
 
-.post_panel ul {
-    display: flex;
+.date {
+  position: absolute;
+  top: 25px;
+  left: 50px;
+  color: #999;
+  font-size: 13px;
 }
-.post_panel li {
+
+.message {
+  margin-top: 15px;
+  line-height: 26px;
+  letter-spacing: 0.2px;
+  font-size: 17px;
+  word-break: break-word;
+}
+
+.userName {
+  color: #088dcd;
+  text-transform: capitalize;
+}
+
+.post_panel {
+  margin-top: 20px;
+
+  ul {
+    display: flex;
+  }
+
+  li {
     margin-right: 35px;
     position: relative;
+
+    img {
+      height: 20px;
+      width: 20px;
+      border-radius: 0;
+    }
+
+    span {
+      position: absolute;
+      bottom: 15px;
+      left: 25px;
+      font-size: 13px;
+    }
+  }
 }
-.post_panel li img {
-    height: 20px;
-    width: 20px;
-    border-radius: 0;
-}
-.post_panel li span{
-    position: absolute;
-    bottom: 15px;
-    left: 25px;
-    font-size: 13px;
-}
+
 .like {
-    cursor: pointer;
+  cursor: pointer;
 }
+
 .share {
-    cursor: pointer;
+  cursor: pointer;
 }
+
 .panelIcon {
-    color: #168aad;
-}
-.panelIcon:hover {
-    color:#1e6091;
+  color: #168aad;
+
+  &:hover {
+    color: #1e6091;
+  }
 }

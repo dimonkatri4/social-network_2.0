@@ -1,18 +1,22 @@
-.buttonsBlock{
-    text-align: center;
-}
-.buttonsBlock button {
+.buttonsBlock {
+  text-align: center;
+
+  button {
     margin: 7px;
+  }
 }
+
 .inputItem {
-    padding: 8px 10px;
-    color: #474973;
+  padding: 8px 10px;
+  color: #474973;
 }
+
 .infoItem {
-    margin-bottom: 10px;
-    text-transform: capitalize;
-    color: #424242;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  color: #424242;
 }
+
 .checkbox {
-    display: flex;
+  display: flex;
 }

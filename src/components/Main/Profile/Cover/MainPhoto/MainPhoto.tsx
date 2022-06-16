@@ -1,6 +1,6 @@
 import React from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import s from "./mainPhoto.module.css"
+import s from "./mainPhoto.module.scss"
 import photoUser from '../../../../../assets/images/photo-user.jpg'
 import {savePhoto} from "../../../../../store/profileThunks";
 import {useAppDispatch} from "../../../../../hooks/redux";
