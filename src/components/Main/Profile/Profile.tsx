@@ -18,7 +18,7 @@ function Profile(props: Props) {
                    isOwner = {props.isOwner}
                    errorInStatus={props.profile.error}
             />
-        <div className={style.content}>
+        <div className='content'>
             <CreatePost/>
             <Posts posts={props.profile.posts} />
         </div>

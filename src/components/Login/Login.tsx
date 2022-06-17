@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react'
-import { Form, Formik } from 'formik'
+import React, {useEffect} from 'react'
+import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
 import classNames from 'classnames'
 import {Navigate, useNavigate} from 'react-router-dom'
 import s from './login.module.scss'
 import winkSmile from '../../assets/images/winkSmile.png'
 import logo from '../../assets/images/logo.png'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { getCaptchaUrl, login } from '../../store/authThunks'
-import { MyTextInput } from '../common/FormikFormsBuild/FormikFormsBuild'
+import {useAppDispatch, useAppSelector} from '../../hooks/redux'
+import {getCaptchaUrl, login} from '../../store/authThunks'
+import {MyTextInput} from '../common/FormikFormsBuild/FormikFormsBuild'
 
 interface Props {
     captchaUrl: string | null;
 }
 
-export function LoginForm({ captchaUrl }: Props) {
+export function LoginForm({captchaUrl}: Props) {
     const dispatch = useAppDispatch()
 
     return (
@@ -29,7 +29,7 @@ export function LoginForm({ captchaUrl }: Props) {
                 userLogin: Yup.string().email('Invalid email address').required(),
                 password: Yup.string().min(6, 'Must be minimum 6 characters or more').required(),
             })}
-            onSubmit={({ userLogin, password, rememberMe, captcha }) =>
+            onSubmit={({userLogin, password, rememberMe, captcha}) =>
                 dispatch(login(userLogin, password, rememberMe, captcha))
             }
         >
@@ -51,7 +51,7 @@ export function LoginForm({ captchaUrl }: Props) {
                     />
                 </div>
                 <div className={s.rememberMe}>
-                    <MyTextInput name="rememberMe" type="checkbox" placeholder="Password" />{' '}
+                    <MyTextInput name="rememberMe" type="checkbox" placeholder="Password"/>{' '}
                     Remember me
                 </div>
                 {captchaUrl && (
@@ -78,38 +78,42 @@ export function LoginForm({ captchaUrl }: Props) {
 }
 
 function Login() {
-    const { isAuth, captchaUrl } = useAppSelector((state) => state.auth)
+    const {isAuth, captchaUrl} = useAppSelector((state) => state.auth)
     const navigate = useNavigate()
 
-    if(isAuth){navigate('/profile')}
+    if (isAuth) {
+        navigate('/profile')
+    }
 
     useEffect(() => {
         if (isAuth) {
             navigate('/profile')
         }
     }, [])
-/*        if(isAuth) {
-            return <Navigate replace to='/profile'/>
-        } */
-        return (
-        <div className={classNames(s.loginPage, s.login_container)}>
-            <div className={s.greeting}>
-                <div className={s.greetingText}>
-                    Welcome to the <br />
-                    social network
-                    <div>
-                        <img src={logo} alt="logo" />
+    /*        if(isAuth) {
+                return <Navigate replace to='/profile'/>
+            } */
+    return (
+        <div className='content'>
+            <div className={classNames(s.loginPage, s.login_container)}>
+                <div className={s.greeting}>
+                    <div className={s.greetingText}>
+                        Welcome to the <br/>
+                        social network
+                        <div>
+                            <img src={logo} alt="logo"/>
+                        </div>
+                    </div>
+                    <div className={s.smile}>
+                        <img src={winkSmile} alt="logo-smile"/>
                     </div>
                 </div>
-                <div className={s.smile}>
-                    <img src={winkSmile} alt="logo-smile" />
+                <div className={classNames('profile_block', s.loginForm)}>
+                    <div className="caption">
+                        <h3 className="title">Login</h3>
+                    </div>
+                    <LoginForm captchaUrl={captchaUrl}/>
                 </div>
-            </div>
-            <div className={classNames('profile_block', s.loginForm)}>
-                <div className="caption">
-                    <h3 className="title">Login</h3>
-                </div>
-                <LoginForm captchaUrl={captchaUrl} />
             </div>
         </div>
     )
