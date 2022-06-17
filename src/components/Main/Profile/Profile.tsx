@@ -1,6 +1,5 @@
 import React from 'react'
 import Cover from "./Cover/Cover";
-import style from './profile.module.scss'
 import {ProfileStateType} from "../../../store/profileSlice";
 import CreatePost from './CreatePost/CreatePost';
 import Posts from "./Posts/Posts";

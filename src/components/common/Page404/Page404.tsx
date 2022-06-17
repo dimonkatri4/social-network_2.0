@@ -13,7 +13,7 @@ function Page404() {
                 </div>
                 <div className={style.errorText}>
                     <h1>Whoops! 404</h1>
-                    <p>We Couldn`t Find That Page</p>
+                    <p>We Couldn&#39;t Find That Page</p>
                     <button type='button' className={classNames('button', style.btnBack)}>
                         <NavLink to="/">Go Back Home</NavLink>
                     </button>

@@ -58,7 +58,8 @@ const initialState = {
     photo: {} as IPhotos,
     editModeProfile: false,
     profileOwner: {} as IProfile,
-    error: '' as string | null
+    error: '' as string | null,
+    openPhoto: false
 }
 
 export type ProfileStateType = typeof initialState;
@@ -128,11 +129,14 @@ export const profileSlice = createSlice({
                 }
                 return p
             })
+        },
+        setOpenPhoto: (state, action: PayloadAction<boolean>) => {
+            state.openPhoto = action.payload
         }
     }
 })
 
 export const {addPost, setUsersProfile, setOwnerProfile, setUsersStatus, deletePost, savePhotoSuccess,
-    updateProfileInfoSuccess, changeEditModeProfile, setErrorInStatus, changeIsLiked } = profileSlice.actions
+    updateProfileInfoSuccess, changeEditModeProfile, setErrorInStatus, changeIsLiked,setOpenPhoto } = profileSlice.actions
 
 export default profileSlice.reducer

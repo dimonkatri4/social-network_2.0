@@ -8,11 +8,15 @@ import {useAppSelector} from '../../hooks/redux'
 import RightPanel from './RightPanel/RightPanel'
 import UsersContainer from './Users/UsersContainer'
 import Page404 from "../common/Page404/Page404";
+import ModalWindow from "../common/ModalWindow/ModalWindow";
 
 function Main() {
     const navigate = useNavigate()
     const location = useLocation()
     const isAuth = useAppSelector((state) => state.auth.isAuth)
+    const profile = useAppSelector((state) => state.profile.profile)
+
+    const profilePhoto = profile && profile.photos;
 
     useEffect(() => {
         location.pathname === '/' && navigate('/profile')
@@ -22,13 +26,16 @@ function Main() {
         <div className={style.main_page}>
             {isAuth && <LeftPanel/>}
             <Routes>
-                <Route path="profile/" element={<ProfileContainer/>}>
-                    <Route path=":userId" element={<ProfileContainer/>}/>
+                <Route path="profile/" element={<ProfileContainer />}>
+                    <Route path=":userId" element={<ProfileContainer />}/>
                 </Route>
                 <Route path="/users" element={<UsersContainer/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path='*' element={<Page404/>}/>
             </Routes>
+            <ModalWindow>
+                {profilePhoto && <img alt='user' src={profilePhoto.large}/>}
+            </ModalWindow>
             {isAuth && <RightPanel/>}
         </div>
     )

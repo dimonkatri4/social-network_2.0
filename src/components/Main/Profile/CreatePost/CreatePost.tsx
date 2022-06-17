@@ -14,9 +14,9 @@ function CreatePost() {
     return (
         <div className={`${style.profile_block} profile_block`}>
             <div className={style.create_post}>
-                {Object.keys(profileOwner).length && (
+                {Object.keys(profileOwner).length ? (
                     <img className={style.ava} src={profileOwner.photos.small} alt="avatar" />
-                )}
+                ) : <div />}
                 <Formik
                     initialValues={{
                         messageText: '',

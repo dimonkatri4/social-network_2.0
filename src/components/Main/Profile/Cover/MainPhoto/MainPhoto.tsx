@@ -5,6 +5,7 @@ import photoUser from '../../../../../assets/images/photo-user.jpg'
 import {savePhoto} from "../../../../../store/profileThunks";
 import {useAppDispatch} from "../../../../../hooks/redux";
 import {IPhotos} from "../../../../../types/IProfile";
+import { setOpenPhoto } from '../../../../../store/profileSlice';
 
 interface Props {
     photos: IPhotos
@@ -14,6 +15,10 @@ interface Props {
 function MainPhoto(props: Props) {
 
     const dispatch = useAppDispatch();
+
+    const openPhoto = () => {
+        dispatch(setOpenPhoto(true))
+    }
 
     const updatePhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) {
@@ -25,7 +30,7 @@ function MainPhoto(props: Props) {
 
     return (
         <div className={s.photoBlock}>
-            <div className={s.main_photo}>
+            <div className={s.main_photo} onClick={openPhoto}>
                 <img src={props.photos.large || photoUser} alt=""/>
             </div>
             {props.isOwner && <div className={s.inputWrapper}>

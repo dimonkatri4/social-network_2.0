@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Profile from './Profile'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import { getProfile, getStatus } from '../../../store/profileThunks'
+
 
 function ProfileContainer() {
     const dispatch = useAppDispatch()
