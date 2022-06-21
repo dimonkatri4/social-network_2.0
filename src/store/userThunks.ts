@@ -1,12 +1,14 @@
 import { getUser } from '../api/userApi'
 import { AppDispatch } from './store'
 import {
+    setCurrentPage,
     setFriendsList,
     setTotalCountUsers,
+    setUserFilter,
     setUsers,
     toggleFollowing,
     toggleFollowSuccess,
-    toggleIsFetching,
+    toggleIsFetching, UserFilter,
 } from './userSlice'
 import { IResponse } from '../types/IResponse'
 import { deleteFollow, postFollow } from '../api/followApi'
@@ -23,10 +25,12 @@ const followUnfollowFlow = async (dispatch: AppDispatch, userId: number, apiMeth
 }
 
 export const requestUsers =
-    (pageSize: number, page: number, friends?: boolean, term?: string) =>
+    (pageSize: number, page: number, filter: UserFilter) =>
     async (dispatch: AppDispatch) => {
         dispatch(toggleIsFetching(true))
-        const data = await getUser(pageSize, page, friends, term)
+        dispatch(setCurrentPage(page))
+        dispatch(setUserFilter(filter))
+        const data = await getUser(pageSize, page, filter.friend, filter.term)
         dispatch(toggleIsFetching(false))
         dispatch(setUsers(data.items))
         dispatch(setTotalCountUsers(data.totalCount))
@@ -48,3 +52,5 @@ export const follow = (userId: number) => async (dispatch: AppDispatch) => {
 export const unfollow = (userId: number) => async (dispatch: AppDispatch) => {
     await followUnfollowFlow(dispatch, userId, deleteFollow)
 }
+
+

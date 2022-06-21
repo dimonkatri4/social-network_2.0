@@ -3,19 +3,31 @@ import {Form, Formik} from "formik";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {MyTextInput} from "../../../common/FormikFormsBuild/FormikFormsBuild";
 import style from './userSearchForm.module.scss'
+import {UserFilter} from "../../../../store/userSlice";
 
 interface Props {
-    searchUsers: (searchName: string) => void
-    userSearchName: string
+    onFilterChanged: (filter: UserFilter) => void
+    filter: UserFilter
 }
 
-function UserSearchForm({searchUsers, userSearchName}: Props) {
+function UserSearchForm({onFilterChanged,filter}: Props) {
+
+    const {term, friend} = filter
+
     const clearForm = (reset: () => void) => {
         reset();
-        if(userSearchName) {searchUsers('')}
+        if(term) {onFilterChanged({term:'', friend})}
+    }
+
+    const submit = (searchName: string) => {
+        const filter: UserFilter = {
+            term: searchName,
+            friend
+        }
+        onFilterChanged(filter)
     }
     return (
-        <Formik initialValues={{searchName:userSearchName}} onSubmit={({searchName}) => searchUsers(searchName)}>
+        <Formik initialValues={{searchName:term}} onSubmit={({searchName}) => submit(searchName)}>
             {({resetForm}) =>
                 <Form className={style.searchBox}>
                     <MyTextInput name='searchName' placeholder='Search Friend'/>

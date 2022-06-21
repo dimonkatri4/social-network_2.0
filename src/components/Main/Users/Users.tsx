@@ -1,58 +1,67 @@
 import React from 'react';
 import classNames from "classnames";
-import {UserStateType} from '../../../store/userSlice';
+import {UserFilter} from '../../../store/userSlice';
 import Pagination from '../../common/Pagination/Pagination';
 import Preloader from '../../common/Preloader/Preloader';
 import style from './users.module.scss'
 import User from "./User/User";
 import UserSearchForm from "./UserSearchForm/UserSearchForm";
+import {useAppSelector} from "../../../hooks/redux";
 
 interface Props {
-    usersState: UserStateType
-    userSearchName: string
     onPageChanged: (pageNumber: number) => void
-    showFriends: (isFriends?: boolean) => void
-    searchUsers: (searchName: string) => void
-    clearForm: () => void
     follow: (id: number) => void
     unfollow: (id: number) => void
+    onFilterChanged: (filter: UserFilter) => void
 }
 
-function Users(props: Props) {
+function Users({onPageChanged,follow,unfollow,onFilterChanged}: Props) {
+
+    const usersState = useAppSelector(state => state.user)
+    const {filter} = usersState
+
+    const showFriends = (isFriend: boolean | null) => {
+        const actualFilter: UserFilter = {
+            term: filter.term,
+            friend: isFriend
+        }
+        onFilterChanged(actualFilter)
+    }
+
     return (
         <div className='content'>
             <div className="profile_block">
                 <div className={classNames("caption", style.friendsCaption)}>
                     <h3 onClick={() => {
-                        props.showFriends(true);
-                        props.clearForm();
+                        showFriends(true);
+
                     }}
-                        className={classNames(props.usersState.isFriendsList && style.friendsTitleActive, style.friendsTitle)}>
+                        className={classNames(filter.friend && style.friendsTitleActive, style.friendsTitle)}>
                         My Friends</h3>
                     <h3 onClick={() => {
-                        props.showFriends();
-                        props.clearForm();
+                        showFriends(null);
+
                     }}
-                        className={classNames(!props.usersState.isFriendsList && style.friendsTitleActive, style.friendsTitle)}>
+                        className={classNames(!filter.friend && style.friendsTitleActive, style.friendsTitle)}>
                         All Users</h3>
                 </div>
-                <UserSearchForm searchUsers={props.searchUsers} userSearchName={props.userSearchName}/>
+                <UserSearchForm onFilterChanged={onFilterChanged} filter={filter} />
                 <Pagination
-                    currentPage={props.usersState.currentPage}
-                    totalItemsCount={props.usersState.totalUsersCount}
-                    pageSize={props.usersState.pageSize}
-                    onPageChanged={props.onPageChanged}
-                    isFriendsList={props.usersState.isFriendsList}
-                    userSearchName={props.userSearchName}
+                    currentPage={usersState.currentPage}
+                    totalItemsCount={usersState.totalUsersCount}
+                    pageSize={usersState.pageSize}
+                    onPageChanged={onPageChanged}
+                    isFriendsList={usersState.isFriendsList}
+                    userSearchName={filter.term}
                 />
-                {props.usersState.isFetching ? <Preloader/> :
+                {usersState.isFetching ? <Preloader/> :
                     <div>
                         {
-                            props.usersState.users.map(u => <User
+                            usersState.users.map(u => <User
                                 user={u}
-                                followingInProgress={props.usersState.followingInProgress}
-                                follow={props.follow}
-                                unfollow={props.unfollow}
+                                followingInProgress={usersState.followingInProgress}
+                                follow={follow}
+                                unfollow={unfollow}
                                 key={u.id}
                             />)
                         }

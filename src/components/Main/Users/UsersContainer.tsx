@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import Users from './Users'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import { follow, requestUsers, unfollow } from '../../../store/userThunks'
-import { setCurrentPage, toggleIsFriendsList } from '../../../store/userSlice'
+import {UserFilter} from '../../../store/userSlice'
 
 function UsersContainer() {
     const dispatch = useAppDispatch()
-    const usersState = useAppSelector((state) => state.user)
-    const [userSearchName, setUserSearchName] = useState('')
+    const {pageSize,currentPage,filter} = useAppSelector((state) => state.user)
 
     useEffect(() => {
-        dispatch(
-            requestUsers(usersState.pageSize, usersState.currentPage, usersState.isFriendsList)
-        )
+        dispatch(requestUsers(pageSize, currentPage, filter))
     }, [])
 
     const followDispatch = (id: number) => {
@@ -23,38 +20,18 @@ function UsersContainer() {
     }
 
     const onPageChanged = (pageNumber: number) => {
-        dispatch(setCurrentPage(pageNumber))
-        dispatch(
-            requestUsers(usersState.pageSize, pageNumber, usersState.isFriendsList, userSearchName)
-        )
+        dispatch(requestUsers(pageSize, pageNumber, filter))
     }
-
-    const showFriends = (isFriends?: boolean) => {
-        dispatch(setCurrentPage(1))
-        dispatch(toggleIsFriendsList(isFriends))
-        dispatch(requestUsers(usersState.pageSize, 1, isFriends))
-    }
-
-    const searchUsers = (searchName: string) => {
-        dispatch(setCurrentPage(1))
-        setUserSearchName(searchName)
-        dispatch(requestUsers(usersState.pageSize, 1, usersState.isFriendsList, searchName))
-    }
-
-    const clearForm = () => {
-        setUserSearchName('')
+    const onFilterChanged = (filters: UserFilter) => {
+        dispatch(requestUsers(pageSize, 1, filters))
     }
 
     return (
         <Users
-            usersState={usersState}
             onPageChanged={onPageChanged}
-            showFriends={showFriends}
-            searchUsers={searchUsers}
-            clearForm={clearForm}
             follow={followDispatch}
             unfollow={unfollowDispatch}
-            userSearchName={userSearchName}
+            onFilterChanged={onFilterChanged}
         />
     )
 }

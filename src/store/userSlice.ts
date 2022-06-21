@@ -10,10 +10,15 @@ const initialState = {
     isFetching: false,
     followingInProgress: [] as number[],
     isFriendsList: true as boolean | undefined,
-    friendsList:[] as IUser[]
+    friendsList:[] as IUser[],
+    filter: {
+        term: '',
+        friend: true as null | boolean
+    }
 }
 
-export type UserStateType = typeof initialState
+export type UserFilter = typeof initialState.filter
+
 type ToggleFollowing = {
     isFetching: boolean
     userId: number
@@ -47,8 +52,8 @@ export const userSlice = createSlice({
                 return user
             })
         },
-        toggleIsFriendsList: (state, action: PayloadAction<boolean | undefined>) => {
-            state.isFriendsList = action.payload
+        setUserFilter: (state, action:PayloadAction<UserFilter>) => {
+          state.filter = action.payload
         },
         setFriendsList: (state, action: PayloadAction<IUser[]>) => {
             state.friendsList = action.payload
@@ -57,6 +62,6 @@ export const userSlice = createSlice({
 })
 
 export const {setUsers, toggleIsFetching, setCurrentPage, setFriendsList, setTotalCountUsers,
-    toggleFollowing, toggleFollowSuccess, toggleIsFriendsList} = userSlice.actions
+    toggleFollowing, toggleFollowSuccess, setUserFilter} = userSlice.actions
 
 export default userSlice.reducer

@@ -4,7 +4,7 @@ import { ResponseUser } from '../types/IUser'
 export const getUser = (
     pageSize: number,
     currentPage: number,
-    friends?: boolean,
+    friends?: boolean | null,
     term?: string
 ) => {
     let urlParameter
