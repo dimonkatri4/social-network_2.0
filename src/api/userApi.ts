@@ -1,17 +1,14 @@
-import { instance } from './baseApi'
-import { ResponseUser } from '../types/IUser'
+import {instance} from './baseApi'
+import {ResponseUser} from '../types/IUser'
 
 export const getUser = (
     pageSize: number,
     currentPage: number,
-    friends?: boolean | null,
-    term?: string
+    friends: boolean | null = null,
+    term = ''
 ) => {
-    let urlParameter
-    if (!term) {
-        urlParameter = `users?count=${pageSize}&page=${currentPage}&friend=${friends}`
-    } else {
-        urlParameter = `users?count=${pageSize}&page=${currentPage}&friend=${friends}&term=${term}`
-    }
+    const urlParameter = `users?count=${pageSize}&page=${currentPage}`
+        + (term === '' ? '' : `&term=${term}`)
+        + (friends === null ? '' : `&friend=${friends}`)
     return instance.get<ResponseUser>(urlParameter).then((response) => response.data)
 }

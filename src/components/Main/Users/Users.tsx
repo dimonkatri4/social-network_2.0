@@ -34,16 +34,19 @@ function Users({onPageChanged,follow,unfollow,onFilterChanged}: Props) {
                 <div className={classNames("caption", style.friendsCaption)}>
                     <h3 onClick={() => {
                         showFriends(true);
-
                     }}
                         className={classNames(filter.friend && style.friendsTitleActive, style.friendsTitle)}>
                         My Friends</h3>
                     <h3 onClick={() => {
                         showFriends(null);
-
                     }}
-                        className={classNames(!filter.friend && style.friendsTitleActive, style.friendsTitle)}>
+                        className={classNames(filter.friend === null && style.friendsTitleActive, style.friendsTitle)}>
                         All Users</h3>
+                    <h3 onClick={() => {
+                        showFriends(false);
+                    }}
+                        className={classNames(filter.friend ===false && style.friendsTitleActive, style.friendsTitle)}>
+                        Unfollow Users</h3>
                 </div>
                 <UserSearchForm onFilterChanged={onFilterChanged} filter={filter} />
                 <Pagination

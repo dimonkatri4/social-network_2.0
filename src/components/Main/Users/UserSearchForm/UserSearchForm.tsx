@@ -19,12 +19,12 @@ function UserSearchForm({onFilterChanged,filter}: Props) {
         if(term) {onFilterChanged({term:'', friend})}
     }
 
-    const submit = (searchName: string) => {
-        const filter: UserFilter = {
+    const submit = (searchName: string): void => {
+        const actualFilter: UserFilter = {
             term: searchName,
             friend
         }
-        onFilterChanged(filter)
+        onFilterChanged(actualFilter)
     }
     return (
         <Formik initialValues={{searchName:term}} onSubmit={({searchName}) => submit(searchName)}>
