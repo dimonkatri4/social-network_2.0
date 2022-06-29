@@ -7,7 +7,8 @@ import { addPost } from '../../../../store/profileSlice'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
 import { MyTextarea } from '../../../common/FormikFormsBuild/FormikFormsBuild'
 
-function CreatePost() {
+const CreatePost = React.memo(function CreatePost() {
+
     const dispatch = useAppDispatch()
     const profileOwner = useAppSelector((state) => state.profile.profileOwner)
 
@@ -55,6 +56,6 @@ function CreatePost() {
             </div>
         </div>
     )
-}
+})
 
 export default CreatePost

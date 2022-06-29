@@ -13,20 +13,20 @@ interface Props {
     errorInStatus: string | null
 }
 
-function Cover(props: Props) {
+const Cover = React.memo(function Cover({errorInStatus,isOwner,status,profile}: Props) {
     return (<>
-            {!Object.keys(props.profile).length ? <Preloader/> :
+            {!Object.keys(profile).length ? <Preloader/> :
                 <div className={s.cover}>
                     <CoverPhoto/>
-                    <MainPhoto photos={props.profile.photos} isOwner={props.isOwner}/>
-                    <CoverInfo fullName={props.profile.fullName}
-                               status={props.status}
-                               isOwner={props.isOwner}
-                               errorInStatus={props.errorInStatus}
+                    <MainPhoto photos={profile.photos} isOwner={isOwner}/>
+                    <CoverInfo fullName={profile.fullName}
+                               status={status}
+                               isOwner={isOwner}
+                               errorInStatus={errorInStatus}
                     />
                 </div>}
         </>
     )
-}
+})
 
 export default Cover

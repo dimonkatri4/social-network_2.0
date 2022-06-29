@@ -46,6 +46,7 @@ module.exports = {
     'consistent-return': 0,
     'jsx-a11y/no-autofocus': 0,
     'jsx-a11y/label-has-associated-control': 0,
-    'prefer-template': 0
+    'prefer-template': 0,
+    'prefer-arrow-callback': 0
   },
 };

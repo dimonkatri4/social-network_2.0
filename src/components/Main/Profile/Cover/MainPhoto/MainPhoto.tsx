@@ -12,7 +12,7 @@ interface Props {
     isOwner: boolean
 }
 
-function MainPhoto(props: Props) {
+const MainPhoto = React.memo(function MainPhoto({photos, isOwner}: Props) {
 
     const dispatch = useAppDispatch();
 
@@ -31,14 +31,14 @@ function MainPhoto(props: Props) {
     return (
         <div className={s.photoBlock}>
             <div className={s.main_photo} onClick={openPhoto}>
-                <img src={props.photos.large || photoUser} alt=""/>
+                <img src={photos.large || photoUser} alt=""/>
             </div>
-            {props.isOwner && <div className={s.inputWrapper}>
+            {isOwner && <div className={s.inputWrapper}>
                 <input type="file" accept="image/*" id="inputPhoto" onChange={updatePhoto} className={s.inputTag}/>
                 <label htmlFor="inputPhoto" className={s.inputPhoto}><FontAwesomeIcon icon='camera'/></label>
             </div>}
         </div>
     )
-}
+})
 
 export default MainPhoto

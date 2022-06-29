@@ -13,17 +13,17 @@ interface Props {
     errorInStatus: string | null
 }
 
-function ProfileStatusWithHook(props: Props) {
+function ProfileStatus({errorInStatus,isOwner,status}: Props) {
 
     const dispatch = useAppDispatch()
 
     const [editMode, setEditMode] = useState(false)
-    const [status, setStatus] = useState(props.status)
+    const [statusText, setStatusText] = useState(status)
 
     useEffect(() => {
-        setStatus(props.status)
+        setStatusText(status)
         dispatch(setErrorInStatus(null))
-    }, [props.status, editMode])
+    }, [status, editMode])
 
     const useOutsideClick = (ref: React.RefObject<HTMLInputElement>) => {
         useEffect(() => {
@@ -51,8 +51,8 @@ function ProfileStatusWithHook(props: Props) {
         setEditMode(true)
     }
     const updateProfileStatus = () => {
-        dispatch(updateStatus(status))
-        if (status.length <= 300) {
+        dispatch(updateStatus(statusText))
+        if (statusText.length <= 300) {
             setEditMode(false)
         } else {
             dispatch(setErrorInStatus(null))
@@ -60,12 +60,12 @@ function ProfileStatusWithHook(props: Props) {
     }
     const exitOfInputStatus = () => {
         setEditMode(false);
-        setStatus(props.status);
+        setStatusText(status);
     }
 
     const onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const text = e.target.value;
-        setStatus(text);
+        setStatusText(text);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -76,23 +76,22 @@ function ProfileStatusWithHook(props: Props) {
 
     return <div className={style.statusBlock}>
         {!editMode &&
-        <span className={style.textStatus} onDoubleClick={props.isOwner ? activateEditMode : undefined}
-              title="Double click to change status">{props.status
-        || props.isOwner && <span className={style.addStatus}>Double click to add status</span>} </span>
+        <span className={style.textStatus} onDoubleClick={isOwner ? activateEditMode : undefined}
+              title="Double click to change status">{status
+        || isOwner && <span className={style.addStatus}>Double click to add status</span>} </span>
         }
         {editMode &&
         <div className={style.inputBlock} ref={wrapperRef}>
             <input className={classNames("inputPlace", style.inputStatus)} onChange={onStatusChange}
-                   autoFocus value={status} onKeyDown={handleKeyDown}/>
+                   autoFocus value={statusText} onKeyDown={handleKeyDown}/>
             <span className={style.updateStatus}><FontAwesomeIcon icon={faCheck} onClick={() => updateProfileStatus()}/></span>
             <span className={style.close}><FontAwesomeIcon icon={faTimes} onClick={exitOfInputStatus}/></span>
         </div>
         }
         {
-            props.errorInStatus && <div className={style.error}>{props.errorInStatus}</div>
+            errorInStatus && <div className={style.error}>{errorInStatus}</div>
         }
-
     </div>
-
 }
-export default ProfileStatusWithHook
+
+export default ProfileStatus

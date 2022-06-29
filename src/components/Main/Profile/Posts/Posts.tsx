@@ -6,9 +6,10 @@ interface Props {
     posts: IPost[];
 }
 
-function Posts({ posts }: Props) {
+const Posts = React.memo(function Posts({ posts }: Props) {
+    console.log("Posts")
     const postElement = posts.map((post) => <Post key={post.id} post={post} />)
     return <div>{postElement}</div>
-}
+})
 
 export default Posts

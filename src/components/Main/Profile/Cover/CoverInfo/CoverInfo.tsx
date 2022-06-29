@@ -9,18 +9,18 @@ interface Props {
     errorInStatus: string | null
 }
 
-function CoverInfo(props: Props) {
+const CoverInfo = React.memo(function CoverInfo({status,isOwner,errorInStatus,fullName}: Props) {
     return (
         <div className={s.cover_info}>
             <div className={s.nameWithStatus}>
-                <div className={s.user_name}>{props.fullName}</div>
-                <ProfileStatus status={props.status}
-                                       isOwner={props.isOwner}
-                                       errorInStatus={props.errorInStatus}
+                <div className={s.user_name}>{fullName}</div>
+                <ProfileStatus status={status}
+                                       isOwner={isOwner}
+                                       errorInStatus={errorInStatus}
                 />
             </div>
         </div>
     )
-}
+})
 
 export default CoverInfo

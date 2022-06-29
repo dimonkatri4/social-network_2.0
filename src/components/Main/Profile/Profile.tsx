@@ -1,28 +1,28 @@
 import React from 'react'
+import {useSelector} from "react-redux";
 import Cover from "./Cover/Cover";
-import {ProfileStateType} from "../../../store/profileSlice";
 import CreatePost from './CreatePost/CreatePost';
 import Posts from "./Posts/Posts";
+import {getProfileSelector} from "../../../store/selectors/profile-selectors";
 
 interface Props {
-    profile: ProfileStateType
     isOwner: boolean
 }
 
-function Profile(props: Props) {
-
+const Profile = React.memo(function Profile({isOwner}: Props) {
+    const profile = useSelector(getProfileSelector)
     return ( <>
-            <Cover profile={props.profile.profile}
-                   status={props.profile.status}
-                   isOwner = {props.isOwner}
-                   errorInStatus={props.profile.error}
+            <Cover profile={profile.profile}
+                   status={profile.status}
+                   isOwner = {isOwner}
+                   errorInStatus={profile.error}
             />
         <div className='content'>
             <CreatePost/>
-            <Posts posts={props.profile.posts} />
+            <Posts posts={profile.posts} />
         </div>
         </>
     )
-}
+})
 
 export default Profile
