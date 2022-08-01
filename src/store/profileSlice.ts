@@ -84,7 +84,7 @@ const getDate = () => {
 }
 
 export const profileSlice = createSlice({
-    name: 'profile',
+    name: "profile",
     initialState,
     reducers: {
         addPost: (state, action:PayloadAction<string>) => {

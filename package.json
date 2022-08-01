@@ -1,6 +1,7 @@
 {
   "name": "social-network_2.0",
   "version": "0.1.0",
+  "homepage": "https://dimonkatri4.github.io/social-network_2.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -35,6 +36,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.tsx src/**/*.ts",
@@ -69,6 +72,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.6.2"
   },
   "packageManager": "yarn@3.2.0"
