@@ -9,6 +9,7 @@ import RightPanel from './RightPanel/RightPanel'
 import UsersContainer from './Users/UsersContainer'
 import Page404 from "../common/Page404/Page404";
 import ModalWindow from "../common/ModalWindow/ModalWindow";
+import userPhoto from "../../assets/images/photo-user.jpg"
 
 function Main() {
     const navigate = useNavigate()
@@ -34,7 +35,8 @@ function Main() {
                 <Route path='*' element={<Page404/>}/>
             </Routes>
             <ModalWindow>
-                {profilePhoto && <img alt='user' src={profilePhoto.large}/>}
+                {profilePhoto &&
+                <img alt='user' src={profilePhoto.large ? profilePhoto.large : userPhoto}/>}
             </ModalWindow>
             {isAuth && <RightPanel/>}
         </div>

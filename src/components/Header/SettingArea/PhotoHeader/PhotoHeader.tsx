@@ -6,6 +6,7 @@ import s from "./photoHeader.module.scss"
 import {IProfile} from "../../../../types/IProfile";
 import {logout} from "../../../../store/authThunks";
 import {useAppDispatch} from "../../../../hooks/redux";
+import photoUser from "../../../../assets/images/photo-user.jpg"
 
 interface Props {
     isAuth: boolean
@@ -47,7 +48,10 @@ function PhotoHeader({isAuth, profileOwner}: Props) {
 
     return (
         <div ref={wrapperRef} className={s.photo_header}>
-            <img src={profileOwner.photos.small} alt="user" onClick={() => setClickedInside(!clickedInside)}
+            <img
+                src={profileOwner.photos.small ? profileOwner.photos.small : photoUser}
+                alt="user"
+                onClick={() => setClickedInside(!clickedInside)}
             />
             <div>{isAuth && profileOwner.fullName}</div>
             {clickedInside &&

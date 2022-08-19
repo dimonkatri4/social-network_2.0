@@ -27,7 +27,7 @@ export function LoginForm({captchaUrl}: Props) {
             }}
             validationSchema={Yup.object({
                 userLogin: Yup.string().email('Invalid email address').required(),
-                password: Yup.string().min(6, 'Must be minimum 6 characters or more').required(),
+                password: Yup.string().min(3, 'Must be minimum 3 characters or more').required(),
             })}
             onSubmit={({userLogin, password, rememberMe, captcha}) =>
                 dispatch(login(userLogin, password, rememberMe, captcha))

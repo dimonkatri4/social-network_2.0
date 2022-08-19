@@ -3,7 +3,7 @@ import {QueryParamProvider} from "use-query-params";
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {Provider} from 'react-redux';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, HashRouter} from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from "./store/store";

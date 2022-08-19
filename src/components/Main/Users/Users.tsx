@@ -7,6 +7,15 @@ import style from './users.module.scss'
 import User from "./User/User";
 import UserSearchForm from "./UserSearchForm/UserSearchForm";
 import {useAppSelector} from "../../../hooks/redux";
+import {
+    getArrayPages,
+    getCurrentPage,
+    getCurrentPortion, getFollowingInProgress, getIsFetching,
+    getIsFriendsList,
+    getPortionCount,
+    getPortionSize,
+    getUserFilter, getUsers
+} from "../../../store/selectors/user-selectors";
 
 interface Props {
     onPageChanged: (pageNumber: number) => void
@@ -15,10 +24,18 @@ interface Props {
     onFilterChanged: (filter: UserFilter) => void
 }
 
-function Users({onPageChanged,follow,unfollow,onFilterChanged}: Props) {
+function Users({onPageChanged, follow, unfollow, onFilterChanged}: Props) {
 
-    const usersState = useAppSelector(state => state.user)
-    const {filter} = usersState
+    const currentPage = useAppSelector(getCurrentPage)
+    const portionSize = useAppSelector(getPortionSize)
+    const filter = useAppSelector(getUserFilter)
+    const isFriendsList = useAppSelector(getIsFriendsList)
+    const currentPortion = useAppSelector(getCurrentPortion)
+    const portionCount = useAppSelector(getPortionCount)
+    const arrayPages = useAppSelector(getArrayPages)
+    const isFetching = useAppSelector(getIsFetching)
+    const followingInProgress = useAppSelector(getFollowingInProgress)
+    const users = useAppSelector(getUsers)
 
     const showFriends = (isFriend: boolean | null) => {
         const actualFilter: UserFilter = {
@@ -45,24 +62,26 @@ function Users({onPageChanged,follow,unfollow,onFilterChanged}: Props) {
                     <h3 onClick={() => {
                         showFriends(false);
                     }}
-                        className={classNames(filter.friend ===false && style.friendsTitleActive, style.friendsTitle)}>
+                        className={classNames(filter.friend === false && style.friendsTitleActive, style.friendsTitle)}>
                         Unfollow Users</h3>
                 </div>
-                <UserSearchForm onFilterChanged={onFilterChanged} filter={filter} />
+                <UserSearchForm onFilterChanged={onFilterChanged} filter={filter}/>
                 <Pagination
-                    currentPage={usersState.currentPage}
-                    totalItemsCount={usersState.totalUsersCount}
-                    pageSize={usersState.pageSize}
+                    currentPage={currentPage}
+                    portionSize={portionSize}
+                    portionCount={portionCount}
+                    currentPortion={currentPortion}
+                    arrayPages={arrayPages}
                     onPageChanged={onPageChanged}
-                    isFriendsList={usersState.isFriendsList}
+                    isFriendsList={isFriendsList}
                     userSearchName={filter.term}
                 />
-                {usersState.isFetching ? <Preloader/> :
+                {isFetching ? <Preloader/> :
                     <div>
                         {
-                            usersState.users.map(u => <User
+                            users.map(u => <User
                                 user={u}
-                                followingInProgress={usersState.followingInProgress}
+                                followingInProgress={followingInProgress}
                                 follow={follow}
                                 unfollow={unfollow}
                                 key={u.id}

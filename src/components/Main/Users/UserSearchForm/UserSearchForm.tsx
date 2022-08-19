@@ -27,7 +27,9 @@ function UserSearchForm({onFilterChanged,filter}: Props) {
         onFilterChanged(actualFilter)
     }
     return (
-        <Formik initialValues={{searchName:term}} onSubmit={({searchName}) => submit(searchName)}>
+        <Formik enableReinitialize
+                initialValues={{searchName:term}}
+                onSubmit={({searchName}) => submit(searchName)}>
             {({resetForm}) =>
                 <Form className={style.searchBox}>
                     <MyTextInput name='searchName' placeholder='Search Friend'/>

@@ -6,6 +6,7 @@ import style from './createPost.module.scss'
 import { addPost } from '../../../../store/profileSlice'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
 import { MyTextarea } from '../../../common/FormikFormsBuild/FormikFormsBuild'
+import photoUser from '../../../../assets/images/photo-user.jpg'
 
 const CreatePost = React.memo(function CreatePost() {
 
@@ -16,7 +17,10 @@ const CreatePost = React.memo(function CreatePost() {
         <div className={`${style.profile_block} profile_block`}>
             <div className={style.create_post}>
                 {Object.keys(profileOwner).length ? (
-                    <img className={style.ava} src={profileOwner.photos.small} alt="avatar" />
+                    <img
+                        className={style.ava}
+                        src={profileOwner.photos.small ? profileOwner.photos.small : photoUser}
+                        alt="avatar" />
                 ) : <div />}
                 <Formik
                     initialValues={{
