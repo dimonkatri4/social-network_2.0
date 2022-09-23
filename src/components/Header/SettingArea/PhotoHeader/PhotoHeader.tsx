@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useRef, useState} from 'react'
 import {NavLink} from "react-router-dom";
 import classNames from "classnames";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -7,6 +7,7 @@ import {IProfile} from "../../../../types/IProfile";
 import {logout} from "../../../../store/authThunks";
 import {useAppDispatch} from "../../../../hooks/redux";
 import photoUser from "../../../../assets/images/photo-user.jpg"
+import {useOnClickOutside} from "usehooks-ts";
 
 interface Props {
     isAuth: boolean
@@ -16,35 +17,16 @@ interface Props {
 function PhotoHeader({isAuth, profileOwner}: Props) {
 
     const dispatch = useAppDispatch()
-
     const [clickedInside, setClickedInside] = useState(false)
 
-    /**
-     * Hook that edit state clicks outside of the passed ref
-     */
-    const useOutsideClick = (ref: React.RefObject<HTMLInputElement>) => {
-        useEffect(() => {
-            /**
-             * Edit state if clicked on outside of element
-             */
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const handleClickOutside = (e: any) => {
-                if (ref.current) {
-                    if (!ref.current.contains(e.target)) {
-                        setClickedInside(false)
-                    }
-                }
-            }
-            // Bind the event listener
-            document.addEventListener("mousedown", handleClickOutside)
-            return () => {
-                // Unbind the event listener on clean up
-                document.removeEventListener("mousedown", handleClickOutside)
-            }
-        }, [ref])
+    const handleClickOutside = () => {
+        if (clickedInside) {
+            setClickedInside(false)
+            console.log('clicked outside')
+        }
     }
     const wrapperRef = useRef(null)
-    useOutsideClick(wrapperRef)
+    useOnClickOutside(wrapperRef, handleClickOutside)
 
     return (
         <div ref={wrapperRef} className={s.photo_header}>

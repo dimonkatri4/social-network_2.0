@@ -22,8 +22,7 @@ module.exports = {
     project: './tsconfig.json'
   },
   plugins: [
-    'react',
-    '@typescript-eslint',
+    'react'
   ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx', '.ts',] }],
