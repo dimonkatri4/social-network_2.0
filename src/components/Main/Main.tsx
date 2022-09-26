@@ -10,6 +10,7 @@ import UsersContainer from './Users/UsersContainer'
 import Page404 from "../common/Page404/Page404";
 import ModalWindow from "../common/ModalWindow/ModalWindow";
 import userPhoto from "../../assets/images/photo-user.jpg"
+import DialogsPage from "./Dialogs/DialogsPage";
 
 function Main() {
     const navigate = useNavigate()
@@ -31,6 +32,7 @@ function Main() {
                     <Route path=":userId" element={<ProfileContainer />}/>
                 </Route>
                 <Route path="/users" element={<UsersContainer/>}/>
+                <Route path="/dialogs" element={<DialogsPage/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path='*' element={<Page404/>}/>
             </Routes>

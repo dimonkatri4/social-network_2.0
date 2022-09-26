@@ -22,7 +22,7 @@ function NavBar() {
                 </NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to="/dialog" className={(item) => (item.isActive ? s.active : '')}>
+                <NavLink to="/dialogs" className={(item) => (item.isActive ? s.active : '')}>
                     Messages
                 </NavLink>
             </div>

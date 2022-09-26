@@ -1,0 +1,41 @@
+.text {
+  padding: 5px;
+  background: rgba(39, 170, 225, 0.1);
+  word-break: break-word;
+}
+
+.textBlock {
+  display: flex;
+  align-items: center;
+}
+
+.userName {
+  font-size: 15px;
+  padding-bottom: 5px;
+  color: #424242;
+}
+
+.userNameAndMessage {
+  padding-bottom: 25px;
+}
+
+.user_photo img {
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
+  margin-right: 5px;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 9px solid rgba(39, 170, 225, 0.1);
+}

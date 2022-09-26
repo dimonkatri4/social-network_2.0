@@ -1,0 +1,21 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 4fr 10fr;
+  grid-template-rows: 50px 2fr;
+  grid-template-areas:
+          "caption caption"
+          "messages messages"
+          "inputMessage inputMessage"
+;
+  padding: 20px;
+  height: 100vh;
+}
+
+.caption {
+  grid-area: caption;
+}
+
+.messages {
+  grid-area: messages;
+  overflow-y: auto;
+}

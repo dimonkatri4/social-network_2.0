@@ -1,13 +1,14 @@
 import React, {useRef, useState} from 'react'
 import {NavLink} from "react-router-dom";
 import classNames from "classnames";
+import {useOnClickOutside} from "usehooks-ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import s from "./photoHeader.module.scss"
 import {IProfile} from "../../../../types/IProfile";
 import {logout} from "../../../../store/authThunks";
 import {useAppDispatch} from "../../../../hooks/redux";
 import photoUser from "../../../../assets/images/photo-user.jpg"
-import {useOnClickOutside} from "usehooks-ts";
+
 
 interface Props {
     isAuth: boolean
